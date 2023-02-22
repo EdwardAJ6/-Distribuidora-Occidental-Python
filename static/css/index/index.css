@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+header{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../img/DISTRIBUIDORA.jpg);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.logo{
+	float: left;
+	padding: 0px 60px 15px;
+}
+
+.logo img{
+	height: 80px;
+}
+
+.logo img:hover{
+	transform: scale(1.1);
+}
+
+.navegacion.active .logo:hover{
+    background-color: #e6e9f0;
+    color: #ffffff;
+}
+
+.navegacion{
+    position: fixed;
+    width: 100%;
+    display: center;
+    align-items: center;
+    padding: 8px;
+    transition: all 0.5s ease;
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+    
+}
+
+.navegacion.active{
+    background-color: #e6e9f0;
+    padding: 2px;
+}
+
+.navegacion.active .logo,
+.navegacion.navegacion.active a{
+    color: #000000;
+}
+
+.navegacion.active a:hover{
+    background-color: #FFC107;
+    color: #ffffff;
+}
+
+.navegacion.active .btnusuario:hover{
+    background-color: #e6e9f0;
+    color: #ffffff;
+}
+.menu{
+    display: flex;
+    margin-left: 500px;
+}
+
+.menu li{
+    list-style: none;
+	margin: 25px;
+   
+}
+
+.menu li a{
+    color: #e6e9f0;
+    text-decoration: none;
+    transition: all 0.5 ease;
+    font-weight: bold;
+}
+
+.menu li a:hover{
+    padding: 5px 10px;
+    background: #FFC107;
+    color: #000000;
+    border-radius: 15px; 
+}
+
+.iconsmenui{
+    float: right;
+	padding: 0px 100px 15px;
+   
+}
+
+.textDO{
+    text-align: center;
+  
+}
+
+.servicios{
+    align-items: center;
+    text-align: center;
+}
+
+
+.textServicios{
+    margin-top: 120px;
+    font-family: 'Open sans', sans-serif;
+    font-weight: bolder;
+    font-size: 50px;
+    margin-left: 50px;
+}
+
+.textVentajas{
+    font-family: 'Open sans', sans-serif;
+    font-weight: bold;
+    color:#000000;
+    margin-left: 50px;
+
+}
+
+.iconsServ {
+    list-style: none;
+    color: #FFC107;;
+    display: inline-block;
+    padding: 45px 80px;
+    text-align: center;
+}
+
+.iconsServ h3{
+    color: #000000;
+    margin-top: 50px;
+    font-family: 'Open sans', sans-serif;
+    text-align: center;
+
+}
+
+.iconsServ h5{
+    text-align: center;
+}
+
+.servicios p{
+    font-size: 15px;
+    font-family: 'Open sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.timeline{
+    background-color: #CE8F64;
+    height: 1000px;
+}
+
+.timeline img{
+    width: 850px;
+    margin-top: 50px;
+    margin-left: 220px;    
+    
+}
+
+.mapa{
+    background-color:#343a40;
+    color:#fff;
+    font-family: 'Open sans', sans-serif;
+    
+}
+
+.btnenviarContac{
+    border: 3px solid #FFC107 ;
+    border-radius: 10px;
+    background-color: #FFC107;
+    color: #ffffff;
+    outline: none;
+    text-align: center;
+    padding: 6px 15px;
+    font-size: 20px;
+    margin-top: 12px;
+    font-family: 'Open sans', sans-serif;
+    font-weight: bold;
+
+}
+
+.btnenviarContac:hover{
+    background-color: #eacd77;
+} 
+
+.piepagina{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Open sans', sans-serif;
+    width: 100%;
+    background-color: #0a141d;
+    
+}
+
+.piepagina .grupo1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+    
+}
+
+.piepagina .grupo1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.piepagina .grupo1 .box figure img{
+    width: 250px;
+
+}
+
+.piepagina .grupo1 .box h2{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+    
+}
+
+.piepagina .grupo1 .box p{
+    color: #efefef;
+    margin-bottom: 10px;
+    
+}
+
+.piepagina .grupo1 .redsocial a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: #0d2033;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.piepagina .grupo1 .redsocial a:hover{
+    color: #FFC107;
+}
+
+.piepagina .grupo2{
+    background-color: #0a1a2a;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+
+@media screen and (max-width:800px) {
+    .piepagina .grupo1{
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+        
+    }
+}
+
+
+
+
