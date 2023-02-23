@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'carrito',
+    'usuario',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +44,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'DistribuidoraOccidentalPy.urls'
+
+AUTH_USER_MODEL = 'usuario.User'
 
 TEMPLATES = [
     {
