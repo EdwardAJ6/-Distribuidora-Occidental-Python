@@ -31,7 +31,7 @@
                 <li class="nav-item"><a href="{{ carro }}">Carrito</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a  href="{% url 'profile' %}">Contáctenos</a></li>
+                <li><a  href="profile/{{user.id}}">Mi cuenta</a></li>
                 <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
             </ul>
 

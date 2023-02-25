@@ -1,22 +1,20 @@
-from django.shortcuts import render
-from django.shortcuts import render
-from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
-from .forms import UserRegistroForm
+from .forms import UserRegistroForm,UsuarioActualizar
 from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
 
 
 def index(request):
     return render(request,'index.html',{      
 })
 
-def profile(request, username=None):
+def profile(request, id):
     current_user = request.user
-    if username and username != current_user.username:
-        user =User.objects.get(username=username)
+    if id and id != current_user.id:
+        user =User.objects.get(pk=id)
     else:
         user =current_user
     return render(request,'editarprofile.html',{'user':user,})
@@ -54,3 +52,11 @@ def registro(request):
         data["form"] = formulario 
     return render(request, 'registro.html',data)
 
+def actualizar_registro(request, pk):
+    registro = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        registro.first_name = request.POST['first_name']
+        registro.save()
+        return redirect('index', pk=registro.pk)
+    else:
+        return render(request, 'index.html', {'registro': registro})

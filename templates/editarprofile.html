@@ -42,7 +42,7 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg-gray">
 <div class="container">
-	<h2 class="title-page">Mi cuenta {{ user.get_full_name}}</h2>
+	<h2 class="title-page">Mi cuenta {{ user.first_name}} {{ user.primer_apellido}}</h2>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION PAGETOP END// ========================= -->
@@ -65,46 +65,68 @@
 
 	<div class="card">
       <div class="card-body">
-		<form class="row">
-			<div class="col-md-9">
+		<form class="row" method="POST">
+			<div class="col-md-5">
 				<div class="form-row">
+					{% csrf_token %}
+					
 				   <div class="col form-group">
-					   <label>Nombre</label>
-						 <input type="text" class="form-control" value="{{ user.first_name}}">						 
-				   </div> <!-- form-group end.// -->
+					<label>Primer Nombre</label>
+					<input name='first_name' id="first_name" type="text" class="form-control" value="{{ user.first_name}}">										 
+				   </div> 
+				   <input type="hidden" name="id" value="{{user.pk}}">
+
+				   
+
 				   <div class="col">
-					<label>Nombre</label>
-					<input type="text" class="form-control" value="{{ user.last_name}}">
+					<label>Primer  Apellido</label>
+					<input  type="text" class="form-control" value="{{ user.primer_apellido}}">
 				   </div>
 				   <div class="col form-group">
 					   <label>Correo</label>
 						 <input type="email" class="form-control" value="{{ user.email}}">
+				   </div>
+				   
+				    <div class="col form-group">
+					   <label>Direccion</label>
+						 <input type="text" class="form-control" value="{{ user.direccion}}">
 				   </div> <!-- form-group end.// -->
-				   <div class="col form-group">
-					   <label>Contraseña</label>
-						 <input type="password" class="form-control" value="{{ user.password}}">
+					<div class="form-group col-md-6">
+						<label>Tipo de Documento</label>
+						<select id="inputState" class="form-control">
+						<option>{{user.tipoDoc}}</option>
+								
+						</select>
 				   </div> <!-- form-group end.// -->
+				   
 			   </div> <!-- form-row.// -->
 			   
-			   <div class="form-row">
-				   <div class="form-group col-md-6">
-					 <label>Zip</label>
-					 <input type="text" class="form-control" value="123009">
-				   </div> <!-- form-group end.// -->
-				   <div class="form-group col-md-6">
-					 <label>Phone</label>
-					 <input type="text" class="form-control" value="+123456789">
-				   </div> <!-- form-group end.// -->
-			   </div> <!-- form-row.// -->
-   
+			 <BR></BR>
 			   <button class="btn btn-primary">Guardar</button>	
    
 			   <br><br><br><br><br><br>
    
 			</div> <!-- col.// -->
-			<div class="col-md">
-				<img src="images/avatars/avatar1.jpg" class="img-md rounded-circle border">
-			</div>  <!-- col.// -->
+			<div class="form-group col-md-5">
+				<div class="col">
+					<label>Segundo Nombre</label>
+					<input type="text" class="form-control" value="{{ user.last_name}}">
+				   </div>
+				<div class="col">
+					<label>Segundo  Apellido</label>
+					<input type="text" class="form-control" value="{{ user.segundo_apellido}}">
+				   </div>
+				 <div class="col form-group">
+					   <label>Telfono</label>
+						 <input type="text" class="form-control" value="{{ user.telefono}}">
+				   </div> <!-- form-group end.// -->
+				<div class="col form-group">
+					   <label>Contraseña</label>
+						 <input type="password" class="form-control" value="{{ user.password}}">
+				   </div> <!-- form-group end.// -->
+
+
+			</div> <!-- form-group end.// -->
 		 </form>
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->

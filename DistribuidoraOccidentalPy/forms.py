@@ -12,3 +12,8 @@ class UserRegistroForm(UserCreationForm):
         model = User
         fields = ['username','email','password1','password2']
         help_text = {k:"" for k in fields }
+
+class UsuarioActualizar(forms.ModelForm):
+    class Meta:
+        user = User
+        fields = ['first_name']
