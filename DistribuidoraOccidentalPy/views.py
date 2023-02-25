@@ -6,15 +6,20 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import UserRegistroForm
+from django.contrib.auth.models import User
 
 
 def index(request):
     return render(request,'index.html',{      
 })
 
-def profileSettings(request):
-    return render(request,'editarprofile.html',{      
-})
+def profile(request, username=None):
+    current_user = request.user
+    if username and username != current_user.username:
+        user =User.objects.get(username=username)
+    else:
+        user =current_user
+    return render(request,'editarprofile.html',{'user':user,})
 
 def login_view(request):
     if request.method == 'POST':

@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 
-import jstore.bd as db
+import DistribuidoraOccidentalPy.db as db
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jazzmin',
     'admin_interface',
-        'colorfield',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'carrito',
+    'usuario',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -59,8 +61,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'jstore.urls'
-
+ROOT_URLCONF = 'DistribuidoraOccidentalPy.urls'
+AUTH_USER_MODEL = 'usuario.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,8 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'jstore.wsgi.application'
-
+WSGI_APPLICATION = 'DistribuidoraOccidentalPy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
