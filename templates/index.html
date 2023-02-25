@@ -24,21 +24,22 @@
 
     <header>
         <nav class="navegacion">  
-            <a href="#" class="logo"> <img src="{% static 'img/logo.png'%}" alt=""></img>
+            <a href="#" class="logo"> <img src="{% static 'img/logoDisc.png'%}" alt=""></img>
             </a>
             <ul class="menu">
                 <li><a href="tienda.xhtml">Tienda</a></li>
                 <li class="nav-item"><a href="{{ carro }}">Carrito</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contactanos">Contáctenos</a></li>
+                <li><a  href="{% url 'profile' %}">Contáctenos</a></li>
                 <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
             </ul>
 
         </nav>
 
     </header>
-    
+    {% block content %}
+
     <div class="servicios" id="servicios">
         <h4 class="textServicios">SERVICIOS</h4>
         <h4 class="textVentajas">Nuestras ventajas</h4>
@@ -142,6 +143,7 @@
 
 </section>
 
+{% endblock %}
 
 <!--PIE DE PAGINA-->
 
@@ -151,7 +153,7 @@
       <div class="box">
         <figure>
           <a href="#">
-            <img src="{% static 'img/logo.png'%}" alt=""></img>
+            <img src="{% static 'img/logoDisc.png'%}" alt=""></img>
           </a>
         </figure>
       </div>

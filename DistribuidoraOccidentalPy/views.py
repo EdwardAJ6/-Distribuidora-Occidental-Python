@@ -12,8 +12,8 @@ def index(request):
     return render(request,'index.html',{      
 })
 
-def ola(request):
-    return render(request,'ola.html',{      
+def profileSettings(request):
+    return render(request,'editarprofile.html',{      
 })
 
 def login_view(request):
