@@ -1,6 +1,3 @@
-from django.shortcuts import render
-from django.shortcuts import render
-from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
@@ -8,6 +5,13 @@ from django.contrib import messages
 from .forms import UserRegistroForm
 from core.models import Producto
 from usuario.models import User
+from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 def tienda(request):
 
@@ -23,9 +27,13 @@ def index(request):
     return render(request,'index.html',{      
 })
 
-def profileSettings(request):
-    return render(request,'editarprofile.html',{      
-})
+def profile(request, id):
+    current_user = request.user
+    if id and id != current_user.id:
+        user =User.objects.get(pk=id)
+    else:
+        user =current_user
+    return render(request,'profile.html',{'user':user,})
 
 def login_view(request):
     if request.method == 'POST':
@@ -60,3 +68,18 @@ def registro(request):
         data["form"] = formulario 
     return render(request, 'registro.html',data)
 
+
+class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+    form_class = EditUserProfileForm
+    login_url = 'login'
+    template_name = "editarprofile.html"
+    success_url = reverse_lazy('index')
+    success_message = "User updated"
+
+    def get_object(slef):
+        return slef.request.user
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR,
+                             "Please submit the form carefully")
+        return redirect('index')

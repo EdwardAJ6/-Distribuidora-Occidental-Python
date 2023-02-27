@@ -30,8 +30,8 @@
                 <li><a href="{% url 'tienda' %}">Tienda</a></li>
                 <li class="nav-item"><a href="{% url 'carrito:carro' %}">Carrito</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a  href="{% url 'profile' %}">Contáctenos</a></li>
+                <li><a href="{% url 'edit_user'%}">Servicios</a></li>
+                <li><a href="{% url 'profile' id=user.id %}">Mi cuenta</a></li>
                 <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
             </ul>
 
