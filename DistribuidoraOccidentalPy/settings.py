@@ -31,7 +31,81 @@ INSTALLED_APPS = [
     'core',
     'carrito',
     'usuario',
+    'import_export',
 ]
+
+# Jazmine Setings
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Distribuidora Occidental",
+    "site_header": "Distribuidora Occidental",
+    "site_brand": "Distribuidora Occ",
+    "site_logo": "/img/logo.png",
+    "site_icon": "/img/logo.png",
+    "site_logo_classes": "img-none shadow-none",
+    "welcome_sing": "Bienvendo a Distribuidora Occidental",
+    "copyright": "Distribuidora Occidental copyright",
+    "show_sidebar": True,
+    "navigation-expanded": False,
+    "search-model": "auth.User",
+    "search_model": ["auth.User"],
+    "hide-apps": [
+        
+    ],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "accounts": "fas fa-user-circle",
+        "accounts.Account": "user-circle",
+        "Marca": "fas fa-user-circle",
+
+        
+        
+    },
+    "related-modal-active": False,
+    "show_ui_builder": False,
+    "changeform_format": "carrousel",
+    "changeform_format_overrides": {"auth.user": "vertical_tabs","auth.group":"vertical_tabs"},
+    "custom-css": "css/dashboard/admin.css",
+    
+    "topmenu_links": [
+        {"name": "Inicio",  "url": "index", "permissions": ["auth.view_user"]},
+    ]
+    
+    
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": True,
+    "footer_small_text": True,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": False,
+    "accent": "accent-primary",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": True,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": True,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-info",
+    "sidebar_nav_small_text": True,
+    "sidebar_disable_expand": True,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "united",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-outline-info",
+        "warning": "btn-outline-warning",
+        "danger": "btn-outline-danger",
+        "success": "btn-outline-success"
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

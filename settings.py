@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'core',
     'carrito',
     'usuario',
+    'import_export',
+    
+    
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"

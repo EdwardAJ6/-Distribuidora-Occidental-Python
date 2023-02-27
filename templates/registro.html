@@ -37,6 +37,12 @@
                           <p class="mb-0 me-2">Crea tu cuenta</p>
                           <button type="submit" id="button" class="btn btn-outline-danger">Registrate</button>
                         </div>
+
+                        <div class="d-flex align-items-center justify-content-center pb-4">
+                          <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
+                          <a type="button" class="btn btn-outline-danger"  href="{% url 'login' %}">Inicia sesión</a>
+                        </div>
+      
       
                       </form>
       
@@ -45,9 +51,7 @@
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 class="mb-4">Registrate :)</h4>
-                      <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                      <p class="small mb-0">Son las:  <div id="clock"></div></p>
                     </div>
                   </div>
                 </div>
@@ -56,5 +60,13 @@
           </div>
         </div>
       </section>
+      <script>
+        function updateClock() {
+          var now = new Date();
+          var clock = document.getElementById('clock');
+          clock.innerHTML = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        </script>
 </body>
 </html>

@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-size: 16px; /* en lugar de usar un tamaño de fuente fijo en píxeles */
+    width: 100%; /* en lugar de usar un ancho fijo en píxeles */
+    height: auto; /* en lugar de usar una altura fija en píxeles */
+}
+header{
+	width: 100%; 
+	height: 110px;
+	background-color: #e6e9f0;
+}
+
+.interior{
+	max-width: 100%;
+	padding: 0 50px;
+	margin: auto;
+}
+
+.logo{
+	float: left;
+	padding: 5px 80px 0px;
+}
+
+.logo img{
+	height: 100px;
+}
+
+.logo img:hover{
+	transform: scale(1.1);
+}
+
+.navegacion{
+    margin-top: 5px;
+	float: left; 
+	display: flex;
+	align-items: center;
+	min-height: 120px;
+	z-index: 1000;
+}
+
+.navegacion ul{
+	list-style: none;
+	padding: 0px 2px;
+}
+
+.navegacion ul li{
+	display: inline-block;
+	position: relative;
+	transition: .3s linear;
+	z-index: 1000;
+    font-family: 'Jost', sans-serif;
+}
+
+.navegacion ul li:hover{
+	transform: scale(1.1);
+}
+
+.navegacion ul li a{
+	color: #000000;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 20px 15px;
+	transition: .3s linear;
+    text-decoration: none;
+}
+
+.navegacion ul li a:hover{
+	color: #FFC107;
+	transform: scale(1.1);
+}
+
+.navegacion ul li:hover .hijos{
+	display: block;
+}
+
+.navegacion .submenu .hijos{
+	display: none;
+	background: #e6e9f0;
+	position: absolute;
+}
+
+.navegacion .submenu .hijos li{
+	display: block;
+	overflow: hidden;
+	border-bottom: none;
+}
+
+.navegacion .submenu .hijos li a{
+	display: block;
+}
+
+.busqueda input[type=text]{
+    width:230px;
+    height: 37px;
+    border-radius:30px;
+    border: solid 2px;
+    border-color: #FFC107;
+    outline: none;
+}
+      
+.busqueda{
+    float:left;
+    margin: 30px;
+    margin-left: 300px;
+    font-family: 'Jost', sans-serif;
+}
+
+.busqueda button{
+    background-color: #FFC107;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 1px;
+    font-size: 12px;
+    border-radius: 30px;
+    border: #FFC107;
+    cursor: pointer;
+}
+
+.btncarrito {
+    margin-top: 35px;
+    margin-right: 30px;
+    float: right;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    border: none;
+    background-color: #e6e9f0;
+
+}
+
+.btnusuario {
+    margin-top: 35px;
+    margin-right: 30px;
+    float: right;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    border: none;
+    background-color: #e6e9f0;
+
+}
+
+.datosbtnI{
+    border: 1px solid #FFC107 ;
+    border-radius: 10px;
+    display: block;
+    padding: 9px 50px;
+    margin: 20px auto;
+    outline: none;
+    text-align: center;
+}
+
+.btnIS{
+    border: 3px solid #FFC107 ;
+    border-radius: 10px;
+    display: block;
+    padding: 7px 15px;
+    margin: 20px auto;
+    outline: none;
+    text-align: center;
+    background-color: #FFC107;
+    color: #ffffff;
+}
+
+
+
+.btnIS:hover {
+    background-color: #eacd77;
+}
+
+
+
+
+.recuperar{
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+    text-align: center;
+    display: block;
+}
+
+.recuperar:hover {
+    color: #f11010;
+}
+
+.textCrearC{
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+}
+
+.textCrearC:hover {
+    color: #f11010;
+}
+
+.modal-body{
+    text-align: center;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+.btnVP{
+    padding: 7px 15px;
+    margin: 25px auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btnVaciar{
+    border: 3px solid #FFC107 ;
+    border-radius: 10px;
+    background-color: #FFC107;
+    color: #ffffff;
+    outline: none;
+    text-align: center;
+    padding: 4px 10px;
+    font-size: 15px;
+    margin-right: 15px;
+
+}
+
+.btnProcesar{
+    border: 3px solid #FFC107 ;
+    border-radius: 10px;
+    background-color: #FFC107;
+    color: #ffffff;
+    outline: none;
+    text-align: center;
+    padding: 4px 10px;
+    font-size: 15px;
+    margin-left: 15px;
+
+}
+
+.btnProcesar:hover{
+    background-color: #eacd77;
+} 
+
+.btnVaciar:hover{
+    background-color: #eacd77;
+}
+
+.tituloI{
+    margin-left: 150px;
+    font-size: 25px;
+}
+
+.carbusquedael-inner{
+    max-height: 30rem;
+}
+
+.textcomprasegura{
+    margin-top: 9px;
+    font-family: 'Jost', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.secciones ul{
+    list-style-type: none;
+    margin-left: 170px;
+    margin-right: 160px;
+    
+}
+
+.secciones li{
+    display: inline-block;
+}
+
+.secciones input {
+    width: 180px;
+    height: 180%;
+    margin: 50px;
+}
+
+.textoPDesc{
+    font-family: 'Jost', sans-serif;
+}
+
+.mapa{
+    background: url(/img/mapa.PNG);
+    width: 92%;
+    height: 500px;
+}
+
+#local{
+    background: #f3f3f3;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Jost', sans-serif;
+}
+
+.wrapper{
+    width: 50%;
+    margin-left: 100px;
+    padding-top: 150px;
+}
+
+@media (max-width:1200px){
+    #local{
+        flex-wrap: wrap;
+        padding-top: 30px;
+    }
+}
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+#numeroslocal div{
+    padding: 0 20px 0 0;
+    height: 48px;
+}
+
+#numeroslocal div:not(:last-child){
+    border-right: 2px solid #3f3f3f;
+}
+
+#numeroslocal div:not(:first-child){
+    padding-left: 20px;
+}
+
+#numeroslocal p{
+    margin: 0;
+    
+}
+
+.piepagina{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Open sans', sans-serif;
+    width: 100%;
+    background-color: #0a141d;
+    
+}
+
+.piepagina .grupo1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+    
+}
+
+.piepagina .grupo1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.piepagina .grupo1 .box figure img{
+    width: 250px;
+
+}
+
+.piepagina .grupo1 .box h2{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+    
+}
+
+.piepagina .grupo1 .box p{
+    color: #efefef;
+    margin-bottom: 10px;
+    
+}
+
+.piepagina .grupo1 .redsocial a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: #0d2033;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.piepagina .grupo1 .redsocial a:hover{
+    color: #FFC107;
+}
+
+.piepagina .grupo2{
+    background-color: #0a1a2a;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+
+@media screen and (max-width:800px) {
+    .piepagina .grupo1{
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+        
+    }
+}
+
+
+
+
+
+
