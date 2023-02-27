@@ -6,7 +6,18 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import UserRegistroForm
+from core.models import Producto
+from usuario.models import User
 
+def tienda(request):
+
+    productos = Producto.objects.all().order_by('-id')
+
+    return render(request,'tienda.html',{    
+        'message': 'Lista Productos',
+        'title': 'Productos',
+        'productos': productos,
+})
 
 def index(request):
     return render(request,'index.html',{      
