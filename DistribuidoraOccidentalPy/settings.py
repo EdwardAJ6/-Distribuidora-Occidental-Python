@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'core',
     'carrito',
     'usuario',
+    'correo',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #variables
 LOGOUT_REDIRECT_URL ="login"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'distrioccidentalzz@gmail.com'
+EMAIL_HOST_PASSWORD = 'ntrbcukxnkinwdjt'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
