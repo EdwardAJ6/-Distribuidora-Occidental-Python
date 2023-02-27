@@ -2,6 +2,9 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from .forms import UserRegistroForm
+from core.models import Producto
+from usuario.models import User
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,6 +13,15 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 
+def tienda(request):
+
+    productos = Producto.objects.all().order_by('-id')
+
+    return render(request,'tienda.html',{    
+        'message': 'Lista Productos',
+        'title': 'Productos',
+        'productos': productos,
+})
 
 def index(request):
     return render(request,'index.html',{      
@@ -31,7 +43,11 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
+<<<<<<< HEAD
             if user.is_staff:             
+=======
+            if user.is_staff:
+>>>>>>> 3c0955eb2e61ca4e331b50c94139c3de5cbc2587
                 return redirect('admin:index')
             else:
                 return redirect('index')

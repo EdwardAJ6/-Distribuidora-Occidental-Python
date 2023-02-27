@@ -1,5 +1,5 @@
 {% load static %}
-{% url 'carrito:carro' as carro %}
+{% url 'carrito:carro' as 'carro' %}
 
 <!DOCTYPE html>
 <head>
@@ -27,8 +27,8 @@
             <a href="#" class="logo"> <img src="{% static 'img/logoDisc.png'%}" alt=""></img>
             </a>
             <ul class="menu">
-                <li><a href="tienda.xhtml">Tienda</a></li>
-                <li class="nav-item"><a href="{{ carro }}">Carrito</a></li>
+                <li><a href="{% url 'tienda' %}">Tienda</a></li>
+                <li class="nav-item"><a href="{% url 'carrito:carro' %}">Carrito</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="{% url 'edit_user'%}">Servicios</a></li>
                 {% if user.is_authenticated %}
