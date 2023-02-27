@@ -189,111 +189,19 @@
       <!--CARDS-->
   
       <div class="container" id="lista-productos">
-        <h1>{{ message }}</h1>
-        <ul> 
+        <h4>{{ message }}</h4>
+      
+        <div class="row">
           {% for producto in producto_list %}
-          <li>
-            {{ producto.NombreProducto }}
+          <div class="col-3 mt-5">
 
-            <span class="text-success">${{ producto.precio }}</span>
-          </li>
+            {% include 'productos/cartaproducto.html' %}
 
+          </div>
           {% endfor %}
-        </ul>
+        </div>
 
       </div>
-    
-<!--<div class="container" id="lista-productos">
-    <div class="row justify-content-center">
-    <div class="col-4">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/jamon_zenu.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Jamón Zenú 450g</h5>
-          <p class="card-text precio">$9.300</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="1" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class=" col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/whiskyoldparr.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Whisky Old Parr </h5>
-          <p class="card-text precio">$112.500</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="2" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/plato_desechable.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Platos desechables 20 unds</h5>
-          <p class="card-text precio">$7.050</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="3" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/queso_bloque.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Queso doble crema</h5>
-          <p class="card-text precio">$47.850</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="4" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/mayonesa.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Mayonesa Fruco 350 g</h5>
-          <p class="card-text precio">$4.100</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="5" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;" >
-        <img src="../img/papafacil.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Papafacil 1000g</h5>
-          <p class="card-text precio">$5.000</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="6" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/arroz_roa.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Arroz Roa 3000 g</h5>
-          <p class="card-text precio">$12.500</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="7" >Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card border-warning mb-3" style="width: 15rem;">
-        <img src="../img/salsa_fruco.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Salsa de tomate Fruco</h5>
-          <p class="card-text precio">$3.200</p>
-          <a href="" class="btn btn-warning agregar-carrito" data-id="8">Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-      </div>
-    </div>-->
 
       <!--MAPA-->
 
@@ -341,6 +249,7 @@
 
 
 
+</body>
 
 
 <!--PIE DE PAGINA-->
@@ -380,4 +289,5 @@
 </footer>
 
 </body>
+
 </html>

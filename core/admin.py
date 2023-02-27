@@ -9,9 +9,14 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 from .models import *
 
+class ProductoAdmin(admin.ModelAdmin):
+    fields = ('NombreProducto', 'precio', 'StockDisponible', 'Descripcion', 'FechaVencimiento', 'Foto', 'Categoria', 'Marca')
+    list_display = ['__str__', 'slug']
 
 
 # @admin.register(Marca) (PAL REPORTE HIJUEPUTA)
+admin.site.register(Producto, ProductoAdmin)
+@admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
     list_display = ['nombre']
     def generate_pdf(self, request, queryset):
@@ -84,6 +89,9 @@ class ProductoAdmin(admin.ModelAdmin):
             doc.title = 'Reporte de los productos'
             data = [['Nombre del Producto','precio','StockDisponible','Descripcion','FechaVencimiento','Foto','Categoria','Marca']]
             for obj in queryset:
+#@admin.register(Producto)
+#class ProductoAdmin(admin.ModelAdmin):
+#   list_display = ['NombreProducto']
 
                 data.append([obj.NombreProducto,obj.precio,obj.StockDisponible,obj.Descripcion,obj.FechaVencimiento,obj.Foto,obj.Categoria,obj.Marca])
             tabla = Table(data)

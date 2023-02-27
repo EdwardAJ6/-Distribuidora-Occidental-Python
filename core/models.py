@@ -2,8 +2,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User, Group
-
-
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
+import uuid
 class Marca(models.Model):
     nombre = models.CharField(max_length=100)
 
@@ -35,15 +36,31 @@ class Producto(models.Model):
     Foto = models.ImageField()
     Categoria = models.ManyToManyField(CategoriaProducto, verbose_name='Categoría')
     Marca = models.ForeignKey(Marca,on_delete=models.CASCADE, verbose_name='Marca')
+    slug = models.SlugField(null=False, blank=False, unique=True)
     
-    def __str__(self):
-        return self.NombreProducto
+#   def save(self, *args, **kwargs):
+#       self.slug = slugify(self.NombreProducto)
+#       super(Producto, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return (self.NombreProducto)
+    
     class Meta:
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
         db_table = 'productos'
+    
+def set_slug(sender, instance, *args, **kwargs):
+        if instance.NombreProducto and not instance.slug:
+            slug = slugify(instance.NombreProducto)
 
+            while Producto.objects.filter(slug=slug).exists():
+                slug = slugify(
+                    '{}-{}'.format(instance.NombreProducto, str(uuid.uuid4())[:8])
+                )
+        instance.slug = slug
+
+pre_save.connect(set_slug, sender=Producto)
 
 class Rol(models.Model):
     nombre = models.CharField(max_length=100,verbose_name='Nombre')

@@ -5,6 +5,7 @@ body {
     width: 100%; /* en lugar de usar un ancho fijo en píxeles */
     height: auto; /* en lugar de usar una altura fija en píxeles */
 }
+
 header{
 	width: 100%; 
 	height: 110px;

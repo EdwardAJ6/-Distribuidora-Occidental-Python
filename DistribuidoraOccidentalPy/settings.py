@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'carrito',
     'usuario',
     'import_export',
+    'correo',
 ]
 
 # Jazmine Setings
@@ -194,3 +195,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #variables
 LOGOUT_REDIRECT_URL ="login"
+
+##Variables para el Correo
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'distrioccidentalzz@gmail.com'
+EMAIL_HOST_PASSWORD = 'ntrbcukxnkinwdjt'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
