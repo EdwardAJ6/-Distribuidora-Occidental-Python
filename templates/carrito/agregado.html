@@ -1,0 +1,29 @@
+{% load producto_extras %}
+{% load carrito_extras %}
+
+<div class="col-3">
+    {% if producto.Foto %}
+        <img src="{{ producto.Foto.url }}" alt="Imagen del producto" width="200">
+    {% endif %}
+</div>
+<div class="col">
+    <div class="h3 font-weight-bold text-success">
+        {{ cantidad | agregar_formato_cantidad }} al carrito de compras
+    </div>
+
+    <div class=""> 
+        <a href="{% url 'producto' producto.slug %}">
+        {{producto.NombreProducto}} 
+        </a>
+    </div>
+
+    <div class=""> 
+        {{producto.precio | formato_precio}}
+    </div>
+    <div>
+        <a href="{% url 'carrito:carro' %}"> Ver carrito</a>
+    </div>
+    <div class="mt-2">
+        <a href="{% url 'tienda' %}" >Seguir Comprando</a>
+    </div>
+</div>
