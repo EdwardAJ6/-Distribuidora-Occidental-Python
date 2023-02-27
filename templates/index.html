@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/index/boostrap-utilities.css' %}" >
     <link rel="stylesheet" href="{% static 'css/index/boostrap-reboot.css' %}" >
     <link rel="stylesheet" href="{% static 'css/index/boostrap-grid.css' %}" >
-
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="#">
    
 </head>
@@ -31,7 +31,9 @@
                 <li class="nav-item"><a href="{{ carro }}">Carrito</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="{% url 'edit_user'%}">Servicios</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' id=user.id %}">Mi cuenta</a></li>
+                {% endif %}
                 <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
             </ul>
 
