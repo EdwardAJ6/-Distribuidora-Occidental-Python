@@ -7,6 +7,7 @@ class ProductoAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'slug']
 
 admin.site.register(Producto, ProductoAdmin)
+
 @admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
     list_display = ['nombre']

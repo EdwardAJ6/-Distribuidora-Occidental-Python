@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 def tienda(request):
 
@@ -40,6 +41,10 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        
+        #if request.GET.get('next'):
+         #   return HttpResponseRedirect(request.GET['next']) 
+        
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))

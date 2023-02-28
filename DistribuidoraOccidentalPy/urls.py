@@ -21,7 +21,7 @@ urlpatterns = [
     path('tienda/', VistaListaProductos.as_view(), name='tienda'),
     path('productos/', include('core.urls')),
     path('edit_profile/', views.UpdateUserView.as_view(), name="edit_user"),
-
+    path('orden/', include('orden.urls')),
 
 ]
 
