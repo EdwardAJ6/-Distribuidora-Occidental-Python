@@ -93,3 +93,4 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 def ordenar(request):
     return render(request,'ordenar.html',{      
 })
+

@@ -74,22 +74,20 @@ $(document).ready(function() {
 	<div class="col-lg  col-md-6 col-sm-12 col">
 		<form action="#" class="search">
 			<div class="input-group w-100">
-			    <input type="text" class="form-control" style="width:60%;" placeholder="¡Busca tus productos!">
-			    
-			    <div class="input-group-append">
-			      <button class="btn btn-primary" type="submit">
-			        <i class="fa fa-search"></i>
-			      </button>
+				
 			    </div>
-		    </div>
 		</form> <!-- search-wrap .end// -->
 	</div> <!-- col.// -->
 	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
 				<div class="d-flex justify-content-end mb-3 mb-lg-0">
 					<div class="widget-header">
 						<small class="title text-muted">Bienvenido</small>
-						<div> 
+						<div>
+							{% if user.is_authenticated %}
+							<a >{{ user.first_name}} {{ user.primer_apellido}}</a> <span class="dark-transp"> </span>
+							{% else %}
 							<a href="{% url 'login'%}">Ingresa</a> <span class="dark-transp"> </span>
+							{% endif %}
 						</div>
 					</div>
 					<a href="{% url 'carro'%}" class="widget-header pl-3 ml-3">
@@ -127,6 +125,8 @@ $(document).ready(function() {
   
       <div class="container" id="lista-productos">
         <h4>{{ message }}</h4>
+		{% include 'productos/buscar.html'%}
+		
 
         <div class="row">
           {% for producto in producto_list %}

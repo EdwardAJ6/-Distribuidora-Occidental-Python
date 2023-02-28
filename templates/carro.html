@@ -68,12 +68,7 @@ $(document).ready(function() {
 	<div class="col-lg  col-md-6 col-sm-12 col">
 		<form action="#" class="search">
 			<div class="input-group w-100">
-			    <input type="text" class="form-control" style="width:60%;" placeholder="¡Busca tus productos!">
-			    
 			    <div class="input-group-append">
-			      <button class="btn btn-primary" type="submit">
-			        <i class="fa fa-search"></i>
-			      </button>
 			    </div>
 		    </div>
 		</form> <!-- search-wrap .end// -->
@@ -83,7 +78,11 @@ $(document).ready(function() {
 					<div class="widget-header">
 						<small class="title text-muted">Bienvenido</small>
 						<div> 
-							<a href="{% url 'login'%}">Ingresa</a> <span class="dark-transp"></span>
+                            {% if user.is_authenticated %}
+							<a >{{ user.first_name}} {{ user.primer_apellido}}</a> <span class="dark-transp"> </span>
+							{% else %}
+							<a href="{% url 'login'%}">Ingresa</a> <span class="dark-transp"> </span>
+							{% endif %}
 						</div>
 					</div>
 					<a href="{% url 'carro'%}" class="widget-header pl-3 ml-3">
@@ -115,8 +114,8 @@ $(document).ready(function() {
             <thead> 
                 <tr> 
                     <th scope="col"> </th>
-                    <th scope="col"> </th>
-                    <th scope="col"> </th>
+                    <th scope="col"> Imagén</th>
+                    <th scope="col"> producto</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
                 </tr>
@@ -132,6 +131,7 @@ $(document).ready(function() {
                                     <img src="{{ producto.Foto.url }}" alt="Imagen del producto" width="60" height="60">
                                 {% endif %}
                             </th>
+                            
                             <th>
                                 <a href="{% url 'producto' producto.slug %}">{{ producto.NombreProducto }}</a>
                                 {% include 'carrito/eliminar.html' %}
