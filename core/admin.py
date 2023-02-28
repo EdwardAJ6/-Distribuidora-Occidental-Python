@@ -12,11 +12,37 @@ from .models import *
 class ProductoAdmin(admin.ModelAdmin):
     fields = ('NombreProducto', 'precio', 'StockDisponible', 'Descripcion', 'FechaVencimiento', 'Foto', 'Categoria', 'Marca')
     list_display = ['__str__', 'slug']
+    def generate_pdf(self, request, queryset):
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="reporte_CategoriasProductos.pdf"'
+            doc = SimpleDocTemplate(response, pagesize=landscape(letter))
+            doc.title = 'Reporte de las categorias productos'
+            data = [['Nombre de la categoria',]]
+            for obj in queryset:
+
+                data.append([obj.nombreCategoria])
+            tabla = Table(data)
+            tabla.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN',  (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, -1), (-1, -1), colors.beige),
+                ('GRID', (0, 0), (-1, -1), 1, colors.black)
+            ]))
+            styles = getSampleStyleSheet()
+            header = Paragraph("Reporte de las categorias productos", style=styles['Heading1'])
+            doc.build([header, tabla])
+
+            return response
+    generate_pdf.short_description = 'Reporte de las categorias productos'
+    actions={generate_pdf}
+admin.site.register(Producto,ProductoAdmin)
+
 
 
 # @admin.register(Marca) (PAL REPORTE HIJUEPUTA)
-admin.site.register(Producto, ProductoAdmin)
-@admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
     list_display = ['nombre']
     def generate_pdf(self, request, queryset):
@@ -79,39 +105,8 @@ class CategoriaProductoAdmin(admin.ModelAdmin):
     actions={generate_pdf}
 admin.site.register(CategoriaProducto,CategoriaProductoAdmin)
 
-# @admin.register(Producto)
-class ProductoAdmin(admin.ModelAdmin):
-    list_display = ['NombreProducto']
-    def generate_pdf(self, request, queryset):
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="reporte_Productos.pdf"'
-            doc = SimpleDocTemplate(response, pagesize=landscape(letter))
-            doc.title = 'Reporte de los productos'
-            data = [['Nombre del Producto','precio','StockDisponible','Descripcion','FechaVencimiento','Foto','Categoria','Marca']]
-            for obj in queryset:
-#@admin.register(Producto)
-#class ProductoAdmin(admin.ModelAdmin):
-#   list_display = ['NombreProducto']
 
-                data.append([obj.NombreProducto,obj.precio,obj.StockDisponible,obj.Descripcion,obj.FechaVencimiento,obj.Foto,obj.Categoria,obj.Marca])
-            tabla = Table(data)
-            tabla.setStyle(TableStyle([
-                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-                ('ALIGN',  (0, 0), (-1, -1), 'CENTER'),
-                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-                ('BACKGROUND', (0, -1), (-1, -1), colors.beige),
-                ('GRID', (0, 0), (-1, -1), 1, colors.black)
-            ]))
-            styles = getSampleStyleSheet()
-            header = Paragraph("Reporte de los productos", style=styles['Heading1'])
-            doc.build([header, tabla])
-
-            return response
-    generate_pdf.short_description = 'Reporte de los Productos'
-    actions={generate_pdf}
-admin.site.register(Producto,ProductoAdmin)
+   
 
 # @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):

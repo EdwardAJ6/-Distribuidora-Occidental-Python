@@ -89,3 +89,7 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
         messages.add_message(self.request, messages.ERROR,
                              "Please submit the form carefully")
         return redirect('index')
+
+def ordenar(request):
+    return render(request,'ordenar.html',{      
+})

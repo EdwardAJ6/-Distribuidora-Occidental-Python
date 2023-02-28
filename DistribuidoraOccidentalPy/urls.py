@@ -17,8 +17,9 @@ urlpatterns = [
     path('login/',views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('registro/', views.registro, name='registro'),
+    path('ordenar/', views.ordenar, name='ordenar'),
     path('carro/', include('carrito.urls')),
-    path('tienda/', views.tienda, name='tienda'), # pedro malparido
+    path('carro/',views.login_view, name='carro'),
     path('tienda/', VistaListaProductos.as_view(), name='tienda'),
     path('productos/', include('core.urls')),
     path('edit_profile/', views.UpdateUserView.as_view(), name="edit_user"),

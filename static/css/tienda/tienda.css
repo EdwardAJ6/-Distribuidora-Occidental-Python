@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-body {
-    font-size: 16px; /* en lugar de usar un tamaño de fuente fijo en píxeles */
-    width: 100%; /* en lugar de usar un ancho fijo en píxeles */
-    height: auto; /* en lugar de usar una altura fija en píxeles */
-}
 
 header{
 	width: 100%; 
