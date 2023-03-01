@@ -454,4 +454,9 @@ class InventarioSalidaAdmin(admin.ModelAdmin):
 admin.site.register(InventarioSalida,InventarioSalidaAdmin)
 
 
+class PqrAdmin(admin.ModelAdmin):
+    list_display = ['usuario', 'titulo', 'descripcion', 'creada_en']
+admin.site.register(Pqr,PqrAdmin)
+
+
 
