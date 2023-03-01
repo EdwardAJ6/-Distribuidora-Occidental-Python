@@ -141,19 +141,6 @@ nav .mobile .links a:hover {
   background-color: white;
 }
 
-/*----------------
-    HEADER
--------------------*/
-header {
-  background-image: url(../../img/fondoV4.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 100vh;
-}
-
-/*----------------
-    BANNER
--------------------*/
 
 h2 {
   font-size: 3.3rem;
@@ -414,13 +401,6 @@ h3 {
   width: 80%;
 }
 
-footer {
-  height: 800px;
-
-  background-image: url(../img/master-chief-darkmode.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 @media screen and (max-width: 1519px) {
   .info {
@@ -476,9 +456,6 @@ footer {
     width: 100%;
   }
 
-  footer {
-    background-position: center center;
-  }
 }
 
 @media screen and (max-width: 701px) {
@@ -545,8 +522,6 @@ footer {
 /* fallback for old browsers */
 background-image: url(../../img/fondoV4.jpg);
 }
-
-
 
 @media (min-width: 768px) {
 .gradient-form {
