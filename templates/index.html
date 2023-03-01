@@ -1,0 +1,214 @@
+{% load static %}
+{% url 'carrito:carro' as 'carro' %}
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="{% static 'css/index/index.css'%}" >
+    <link rel="stylesheet" href="{% static 'css/index/bootstrap.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-utilities.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-reboot.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-grid.css' %}" >
+
+    <link rel="shortcut icon" href="#">
+   
+</head>
+
+<body>
+
+
+    <!--ENCABEZADO-MENÚ-->
+
+    <header>
+        <nav class="navegacion">  
+            <a href="#" class="logo"> <img src="{% static 'img/logo.png'%}" alt=""></img>
+            </a>
+            <ul class="menu">
+                <li><a href="{% url 'tienda' %}">Tienda</a></li>
+                <li class="nav-item"><a href="{% url 'carrito:carro' %}">Carrito</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="{% url 'edit_user'%}">Servicios</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' id=user.id %}">Mi cuenta</a></li>
+                {% endif %}
+                <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+    {% block content %}
+    <div class="servicios" id="servicios">
+        <h4 class="textServicios">SERVICIOS</h4>
+        <h4 class="textVentajas">Nuestras ventajas</h4>
+        
+
+        <div class="serviciosicons">
+            <div>
+                <ul>
+                    <li class="iconsServ"><i class="fa-solid fa-cart-arrow-down fa-6x"></i>
+                      <h3>E-Commerce</h3>
+                      <p aling="scale">Estamos expandiéndonos a <br></br>la a Web, con un comercio electrónico.</p>
+                    </li>
+
+                    <li class="iconsServ"><i class="fa-solid fa-truck fa-6x"></i>
+                      <h3>Domicilios</h3>
+                      <p aling="scale">Podras realizar tus pedidos <br></br>y nosostros nos encargamos enviarlos <br></br>a tu domicilio en toda Bogotá.</p>
+                    </li>
+
+                    <li class="iconsServ"><i class="fa-solid fa-lock fa-6x"></i>
+                      <h3>Seguridad-Web</h3>
+                      <p aling="scale">Tus datos estaran seguros <br></br>en nuestra página Web :).</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline">
+      <div>
+      <img src="{% static 'img/timeline.png' %}" alt=""></img>
+    </div>
+
+    </div>
+
+   
+
+
+
+
+    <!--SCRIPT-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    
+    <script src="{% static 'js/menuC.js' %}"></script>
+
+    <script>
+      function validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const description = document.getElementById("description").value.trim();
+
+        if (name === "") {
+          alert("Por favor, ingrese su nombre.");
+        } else if (email === "") {
+          alert("Por favor, ingrese su correo electrónico.");
+        } else if (!validateEmail(email)) {
+          alert("Por favor, ingrese un correo electrónico válido.");
+        } else if (phone === "") {
+          alert("Por favor, ingrese su número de teléfono.");
+        } else if (!validatePhone(phone)) {
+          alert("Por favor, ingrese un número de teléfono válido.");
+        } else if (description === "") {
+          alert("Por favor, ingrese una descripción.");
+        } else {
+          alert("Formulario enviado correctamente.");
+        }
+      }
+
+      function validateEmail(email) {
+        // Expresión regular para validar un correo electrónico.
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+
+      function validatePhone(phone) {
+        // Expresión regular para validar un número de teléfono.
+        const regex = /^\d{10}$/;
+        return regex.test(phone);
+      }
+    </script>
+
+
+
+<!--MAPA-->
+<section class="page-section bg-color-contacto mapa">
+<div class="container">
+    <div class="text-center">
+        <h2 class="section-heading text-uppercase textContac">Contáctanos </h2>
+        <h3 class="section-subheading color-let">Envíanos un mensaje</h3>
+    </div>
+  <div class="row">
+    <div class="col-md p-3">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1385.865976340312!2d-74.14459635412035!3d4.623263584088366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ea1709219c9%3A0x6f406235e52b6547!2sAUTOSERVICIO%20RAIGOZA!5e0!3m2!1ses!2sco!4v1676855615927!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <!--FORMULARIO-->
+
+    <div class="col-md p-3" id="contactanos">
+      
+      <form>
+        <div class="form-group">
+          <label for="name">Nombres</label>
+          <input type="text" class="form-control" id="name" name="name"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Teléfono</label>
+          <input type="tel" class="form-control" id="phone" name="phone"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Mensaje</label>
+          <textarea id="description"class="form-control" placeholder="Escribe tu mensaje aquí" id="description" rows="3"></textarea>
+        </div>
+
+        <div class="text-center">
+            <button class="btnenviarContac" id="submitButton" type="button" onclick="validateForm()">enviar</button>
+        </div>  
+        </form>        
+        </div>                      
+    </div> 
+  </div>
+
+</section>
+{% endblock %}
+
+<!--PIE DE PAGINA-->
+
+<footer class="piepagina" >
+    <div class="grupo1" id="nosotros">
+  
+      <div class="box">
+        <figure>
+          <a href="#">
+            <img src="{% static 'img/logo.png'%}" alt=""></img>
+          </a>
+        </figure>
+      </div>
+  
+      <div class="box">
+        <h2>SOBRE NOSOTROS</h2>
+        <p>Nuestra empresa fue fundada en el año 2016, después de hacer realidad la idea de formar una empresa y fomentar empleos directos que contribuyan al buen desarrollo de una sociedad Colombiana más justa y competitiva. Nuestra misión ha sido implementar procesos modernos de comercialización de acuerdo con el mercado y por último, nuestra visión es mantener nuestra calidad y expandirnos a otros horizontes para servirle de una manera más cómoda a nuestros clientes.
+        </p>
+      </div>
+  
+      <div class="box">
+        <h2>SIGUENOS</h2>
+        <div class="redsocial">
+          <a href="https://www.facebook.com/groups/1586837975002924/" class="fa fa-facebook"></a>
+          <a href="https://www.instagram.com/senacomunica/" class="fa fa-instagram"></a>
+          <a href="https://twitter.com/SENAComunica" class="fa fa-twitter"></a>
+          <a href="https://business.whatsapp.com/" class="fa fa-whatsapp"></a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="grupo2">
+      <small> 2023 <b>Distribuidora Occidental</b> - Todos los Derechos Reservados.</small>
+    </div>
+  
+</footer>
+</body>
+
+</html>
