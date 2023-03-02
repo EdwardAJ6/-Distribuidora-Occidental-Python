@@ -11,7 +11,7 @@ def carro(request):
 
     carrito = crear_obtener_carrito(request)
     
-    return render(request, 'carro.html', { 
+    return render(request, 'tienda/carro.html', { 
      'carrito':carrito                                     
 })
 

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="section-intro padding-y-sm">
+<div class="container">
+<div class="intro-banner-wrap"> 
+	<center>
+	<img src="{% static 'img/images/banners/fondoV4.jpg'%}" class="img-fluid rounded"></center>
+</div>
+
+<div class="col-lg col-sm col-md col-6 flex-grow-0">
+	<div class="category-wrap dropdown d-inline-block float-right">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
+			<i class="fa fa-bars"></i> Categorias
+		</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="#">Lacteos</a>
+		</div>
+	</div>
+</div>
+</section>
+<section class="section-name padding-y-sm">
+      <!--CARDS-->
+      <div class="container" id="lista-productos">
+        <h4>{{ message }}</h4>
+		{% include 'productos/buscar.html'%}
+		
+
+        <div class="row">
+          {% for producto in producto_list %}
+          <div class="col-3 mt-5">
+
+            {% include 'productos/cartaproducto.html' %}
+
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+</section>
+</body>
+
+{% endblock %}

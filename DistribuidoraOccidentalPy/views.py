@@ -18,7 +18,7 @@ def tienda(request):
 
     productos = Producto.objects.all().order_by('-id')
 
-    return render(request,'tienda.html',{    
+    return render(request,'tienda/tienda.html',{    
         'message': 'Lista Productos',
         'title': 'Productos',
         'productos': productos,
@@ -34,7 +34,7 @@ def profile(request, id):
         user =User.objects.get(pk=id)
     else:
         user =current_user
-    return render(request,'profile.html',{'user':user,})
+    return render(request,'cuenta/profile.html',{'user':user,})
 
 def login_view(request):
     if request.method == 'POST':
@@ -54,7 +54,7 @@ def login_view(request):
                 return redirect('index')
         else: 
             messages.error(request, 'Usuario o contraseña incorrectos')
-    return render(request, 'login.html',{})
+    return render(request, 'cuenta/login.html',{})
 
 def logout_view(request):
     logout(request)
@@ -74,13 +74,16 @@ def registro(request):
             messages.success(request,'Usuario ha sido creado' )
             return redirect('login')
         data["form"] = formulario 
-    return render(request, 'registro.html',data)
+    return render(request, 'cuenta/registro.html',data)
 
+def tienda(request):
+    return render(request,'tienda/tienda.html',{      
+})
 
 class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     form_class = EditUserProfileForm
     login_url = 'login'
-    template_name = "editarprofile.html"
+    template_name = "cuenta/editarprofile.html"
     success_url = reverse_lazy('index')
     success_message = "User updated"
 
@@ -91,3 +94,8 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
         messages.add_message(self.request, messages.ERROR,
                              "Please submit the form carefully")
         return redirect('index')
+
+def ordenar(request):
+    return render(request,'ordenes/ordenar.html',{      
+})
+

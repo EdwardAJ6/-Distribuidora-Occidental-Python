@@ -1,0 +1,18 @@
+{% extends 'tienda.html'%}
+
+{% block content %}
+<div class="col">
+    {% include 'productos/busca.html' with query=query%}
+    <hr>
+    <p>Resultados para: {{ query }} ({{count}})</p>
+    
+    <div class="row">
+        {% for object in productos_list%}
+        <div class="col-3 mt-5">
+            {% include 'productos/cartaproducto.html' with product=object %}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
