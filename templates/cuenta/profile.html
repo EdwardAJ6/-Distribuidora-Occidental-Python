@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% url 'direcciones:direcciones' as direcciones %}
+
+<section class="section-pagetop bg-gray">
+	<div class="container">
+		<h2 class="title-page">Mi cuenta {{ user.first_name}} {{ user.primer_apellido}}</h2>
+	</div>
+	</section>
+	
+	<section class="section-content padding-y">
+	<div class="container">
+	
+	<div class="row">
+		<aside class="col-md-3">
+			<nav class="list-group">
+				<a class="list-group-item" href="#"> Account overview  </a>
+				<a class="list-group-item" href="{{ direcciones }}"> Direcciones  </a>
+				<a class="list-group-item" href="#"> Mis compras </a>
+				<a class="list-group-item active" href="#"> Configuracion </a>
+				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
+			</nav>
+		</aside>
+		<main class="col-md-9">
+	
+		<div class="card">
+		  <div class="card-body">
+			<form class="row" method="POST">
+				<div class="col-md-5">
+					<div class="form-row">
+						{% csrf_token %}
+						
+					   <div class="col form-group">
+						<label>Primer Nombre</label>
+						<input name='first_name' id="first_name" type="text" class="form-control" value="{{ user.first_name}}">										 
+					   </div> 
+					   <input type="hidden" name="id" value="{{user.pk}}">
+	
+					   <div class="col">
+						<label>Primer  Apellido</label>
+						<input  type="text" class="form-control" value="{{ user.primer_apellido}}">
+					   </div>
+					   <div class="col form-group">
+						   <label>Correo</label>
+							 <input type="email" class="form-control" value="{{ user.email}}">
+					   </div>
+					   
+						<div class="col form-group">
+						   <label>Direccion</label>
+							 <input type="text" class="form-control" value="{{ user.direccion}}">
+					   </div>
+						<div class="form-group col-md-6">
+							<label>Tipo de Documento</label>
+							<select id="inputState" class="form-control">
+							<option>{{user.tipoDoc}}</option>
+							</select>
+					   </div> 
+				   </div>
+				 <BR></BR>
+	
+				 <a href="{% url 'edit_user'%}">Actualizar</a>
+				   <br><br><br><br><br><br>
+				</div>
+				<div class="form-group col-md-5">
+					<div class="col">
+						<label>Segundo Nombre</label>
+						<input type="text" class="form-control" value="{{ user.last_name}}">
+					   </div>
+					<div class="col">
+						<label>Segundo  Apellido</label>
+						<input type="text" class="form-control" value="{{ user.segundo_apellido}}">
+					   </div>
+					 <div class="col form-group">
+						   <label>Telefono</label>
+							 <input type="text" class="form-control" value="{{ user.telefono}}">
+					   </div>
+					<div class="col form-group">
+						   <label>Contraseña</label>
+							 <input type="password" class="form-control" value="{{ user.password}}">
+					   </div>
+				</div>
+			 </form>
+		  </div>
+		</div>
+		</main>
+	</div>
+	</div>
+</section>
+{% endblock %}

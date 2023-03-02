@@ -1,65 +1,59 @@
 {% load static %}
-{% url 'carrito:carro' as 'carro' %}
+{% url 'direcciones:direcciones' as direcciones %}
 
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <link  href="{% static 'img/images/logoDisc.ico' %}" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/index/index.css'%}" >
     <link rel="stylesheet" href="{% static 'css/index/bootstrap.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/index/boostrap-utilities.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/index/boostrap-reboot.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/index/boostrap-grid.css' %}" >
-
-    <link rel="shortcut icon" href="#">
-   
+    <link href="{% static 'fonts/fontawesome/css/all.min.css'%}" type="text/css" rel="stylesheet">
+    <title>Distribuidora Occidental</title>
 </head>
 
 <body>
-
-
-    <!--ENCABEZADO-MENÚ-->
-
-    <header>
+    <header class="xd">
         <nav class="navegacion">  
-            <a href="#" class="logo"> <img src="{% static 'img/logo.png'%}" alt=""></img>
+            <a href="#" class="logo"> <img src="{% static 'img/images/logo.png'%}" alt=""></img>
             </a>
             <ul class="menu">
                 <li><a href="{% url 'tienda' %}">Tienda</a></li>
                 <li class="nav-item"><a href="{% url 'carrito:carro' %}">Carrito</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#">Nosotros</a></li>
                 <li><a href="{% url 'edit_user'%}">Servicios</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' id=user.id %}">Mi cuenta</a></li>
                 {% endif %}
-                <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
+
+                {% if not  user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>    
+                {% else %}
+                
+                {% endif %}
             </ul>
-
         </nav>
-
     </header>
+
     {% block content %}
     <div class="servicios" id="servicios">
         <h4 class="textServicios">SERVICIOS</h4>
         <h4 class="textVentajas">Nuestras ventajas</h4>
-        
-
         <div class="serviciosicons">
             <div>
                 <ul>
-                    <li class="iconsServ"><i class="fa-solid fa-cart-arrow-down fa-6x"></i>
+                    <li class="iconsServ"><i class="fas fa-cart-arrow-down fa-6x"></i>
                       <h3>E-Commerce</h3>
                       <p aling="scale">Estamos expandiéndonos a <br></br>la a Web, con un comercio electrónico.</p>
                     </li>
 
-                    <li class="iconsServ"><i class="fa-solid fa-truck fa-6x"></i>
+                    <li class="iconsServ"><i class="fas fa-truck fa-6x"></i>
                       <h3>Domicilios</h3>
                       <p aling="scale">Podras realizar tus pedidos <br></br>y nosostros nos encargamos enviarlos <br></br>a tu domicilio en toda Bogotá.</p>
                     </li>
 
-                    <li class="iconsServ"><i class="fa-solid fa-lock fa-6x"></i>
+                    <li class="iconsServ"><i class="fas fa-lock fa-6x"></i>
                       <h3>Seguridad-Web</h3>
                       <p aling="scale">Tus datos estaran seguros <br></br>en nuestra página Web :).</p>
                     </li>
@@ -72,14 +66,7 @@
       <div>
       <img src="{% static 'img/timeline.png' %}" alt=""></img>
     </div>
-
     </div>
-
-   
-
-
-
-
     <!--SCRIPT-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -124,9 +111,6 @@
         return regex.test(phone);
       }
     </script>
-
-
-
 <!--MAPA-->
 <section class="page-section bg-color-contacto mapa">
 <div class="container">
@@ -139,7 +123,6 @@
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1385.865976340312!2d-74.14459635412035!3d4.623263584088366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ea1709219c9%3A0x6f406235e52b6547!2sAUTOSERVICIO%20RAIGOZA!5e0!3m2!1ses!2sco!4v1676855615927!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <!--FORMULARIO-->
-
     <div class="col-md p-3" id="contactanos">
       
       <form>
@@ -175,40 +158,34 @@
 {% endblock %}
 
 <!--PIE DE PAGINA-->
-
 <footer class="piepagina" >
     <div class="grupo1" id="nosotros">
   
       <div class="box">
         <figure>
           <a href="#">
-            <img src="{% static 'img/logo.png'%}" alt=""></img>
+            <img src="{% static 'img/images/logo.png'%}" alt=""></img>
           </a>
         </figure>
       </div>
-  
       <div class="box">
         <h2>SOBRE NOSOTROS</h2>
         <p>Nuestra empresa fue fundada en el año 2016, después de hacer realidad la idea de formar una empresa y fomentar empleos directos que contribuyan al buen desarrollo de una sociedad Colombiana más justa y competitiva. Nuestra misión ha sido implementar procesos modernos de comercialización de acuerdo con el mercado y por último, nuestra visión es mantener nuestra calidad y expandirnos a otros horizontes para servirle de una manera más cómoda a nuestros clientes.
         </p>
       </div>
-  
       <div class="box">
         <h2>SIGUENOS</h2>
         <div class="redsocial">
-          <a href="https://www.facebook.com/groups/1586837975002924/" class="fa fa-facebook"></a>
-          <a href="https://www.instagram.com/senacomunica/" class="fa fa-instagram"></a>
-          <a href="https://twitter.com/SENAComunica" class="fa fa-twitter"></a>
-          <a href="https://business.whatsapp.com/" class="fa fa-whatsapp"></a>
+          <a href="https://www.facebook.com/groups/1586837975002924/" class="fab fa-facebook"></a>
+          <a href="https://www.instagram.com/senacomunica/" class="fab fa-instagram"></a>
+          <a href="https://twitter.com/SENAComunica" class="fab fa-twitter"></a>
+          <a href="https://business.whatsapp.com/" class="fab fa-whatsapp"></a>
         </div>
       </div>
     </div>
-  
     <div class="grupo2">
       <small> 2023 <b>Distribuidora Occidental</b> - Todos los Derechos Reservados.</small>
     </div>
-  
 </footer>
 </body>
-
 </html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="col">
+    <p class="h3">Selecciona una dirección de envío</p>
+  
+    {% for direcciones in direcciones %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{direcciones.direccion}}</h5>
+          <p class="card-text">{{ direcciones.localidad }} - {{direcciones.barrio}}</p>
+          <a href="{% url 'orden:check_direccion' pk=direcciones.pk %}" class="btn btn-warning">Seleccionar</a>
+        </div>
+      </div>
+    {% endfor %}
+  
+  </div>
+
+{% endblock %}

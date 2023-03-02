@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load producto_extras%}
+
+{% block content%}
+
+    <div class="a">
+        <div class="b">
+                {% if producto.Foto %}
+                <img src="{{ producto.Foto.url }}" class="imgc" alt="Imagen del producto" width="200" height="200">
+                {% endif %}
+        </div>
+        <div class="c">
+            <hr>
+            <h1>{{ producto.NombreProducto }}</h1>
+            <div class="h5 font-weight-bold">
+                 Precio: <span class="text-danger">{{ producto.precio }}</span>
+            </div>
+            <div class="d">
+            <p>{{ producto.Descripcion }}</p>
+            {% include 'carrito/agregar.html' %}
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

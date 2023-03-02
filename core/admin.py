@@ -70,7 +70,7 @@ class MarcaAdmin(admin.ModelAdmin):
 
             return response
     generate_pdf.short_description = 'Reporte de los marcas'
-    actions={generate_pdf}
+    actions={generate_pdf}   
 admin.site.register(Marca,MarcaAdmin)
 
 
