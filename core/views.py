@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from .models import Producto
 
 class VistaListaProductos(ListView):
-    template_name = 'tienda.html'
+    template_name = 'tienda/tienda.html'
     queryset = Producto.objects.all().order_by('-id')
 
     def get_context_data(self, **kwargs):
@@ -18,7 +18,7 @@ class VistaListaProductos(ListView):
 
 class VistaDetalleProducto(DetailView):
     model = Producto
-    template_name = 'producto.html'
+    template_name = 'tienda/producto.html'
     
     
 class VistaListaBuscarProductos(ListView):

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'img/images/logoDisc.ico' %}" rel="shortcut icon" type="image/x-icon">
+    
+    {% comment %} index styles {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/index/index.css'%}" >
+    <link rel="stylesheet" href="{% static 'css/index/bootstrap.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-utilities.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-reboot.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index/boostrap-grid.css' %}" >
+    
+    {% comment %} tienda styles {% endcomment %}
+    <link  href="{% static 'img/images/logoDisc.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'css/tienda/bootstrap.css'%}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'fonts/fontawesome/css/all.min.css'%}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/tienda/ui.css'%}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/tienda/responsive.css'%}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+    {% comment %} profile styles {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/profile/bootstrap.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/profile/ui.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/profile/responsive.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/profile/all.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'js/profile/script.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/profile/jquery-2.min.css' %}" >
+
+
+    {% comment %} js {% endcomment %}
+    <script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}" type="text/javascript"></script>
+
+    <title>Distribuidora Occidental</title>
+
+</head>
+<body>
+    {% include 'incluidos/header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'incluidos/footer.html' %}
+</body>
+</html>

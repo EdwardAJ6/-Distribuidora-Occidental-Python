@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<section class="section-pagetop bg-gray">
+<div class="container">
+	<h2 class="title-page">Mi cuenta {{ user.first_name}} {{ user.primer_apellido}}</h2>
+</div> 
+</section>
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	<aside class="col-md-3">
+		<nav class="list-group">
+			<a class="list-group-item" href="#"> Account overview  </a>
+			<a class="list-group-item" href="#"> Direcciones  </a>
+			<a class="list-group-item" href="#"> Mis compras </a>
+			<a class="list-group-item active" href="#"> Configuracion </a>
+			<a class="list-group-item" href="#">Cerrar sesion</a>
+		</nav>
+	</aside>
+	<main class="col-md-9">
+
+	<div class="card">
+      <div class="card-body">
+		<form class="row" method="POST">
+			{% csrf_token %}
+			{{form}}
+			<button type="submit">Modificar</button>
+		 </form>
+      </div>
+    </div>
+
+	</main>
+</div>
+
+</div>
+</section>
+{% endblock %}

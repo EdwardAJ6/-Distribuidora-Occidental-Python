@@ -1,4 +1,5 @@
 {% load static %}
+<<<<<<< HEAD
 <head>
     <meta charset="utf-8">
 <meta http-equiv="pragma" content="no-cache" />
@@ -39,12 +40,18 @@ $(document).ready(function() {
 </head>
 
 <center> 
+=======
+
+>>>>>>> 6ad07e11649c169a730580a65dcf37b9054ae79e
 <div class="col-3">
 <form action="{% url 'carrito:agregar' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="producto_id" value="{{ producto.id }}">
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ad07e11649c169a730580a65dcf37b9054ae79e
     <div class="">
         <button type="button" class="btb btn-info d-inline" id="eliminar">-</button>
         <input type="number" value="1" class="form-control col-sm-1 d-inline" id="cantidad" name="cantidad" readonly>
@@ -55,7 +62,12 @@ $(document).ready(function() {
     <button type="submit" class="btn btn-warning">Agregar al carrito</button>
     <div>
 </form>
+<<<<<<< HEAD
 </center>
+=======
+</div>
+
+>>>>>>> 6ad07e11649c169a730580a65dcf37b9054ae79e
 
 <script>
     const agregar = document.getElementById('agregar')
