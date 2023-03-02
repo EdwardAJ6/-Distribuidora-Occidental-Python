@@ -15,6 +15,10 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render
+from core.forms import PqrForm
+from django.contrib import messages
 
 def tienda(request):
 
@@ -104,5 +108,24 @@ def ver_pqrs(request):
         'pqrs': pqrs,
     }
     return render(request,'cuenta/pqrs.html',context)
+
+
+@login_required(login_url='login')
+def añadir_pqrs(request):
+
+        url = request.META.get('HTTP_REFERER')
+        if request.method == 'POST':
+            form = PqrForm(request.POST)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.usuario_id = request.user.id  # asignar el id del usuario en la columna "usuario_id"
+                data.save()
+                messages.success(request, 'Gracias! Tu opinión ha sido enviada.')
+                return redirect(url)
+            else:
+                print(form.errors)
+        # crear una respuesta si la solicitud no es del tipo POST o el formulario no es válido
+        return HttpResponse("La solicitud no es válida")
 
 
