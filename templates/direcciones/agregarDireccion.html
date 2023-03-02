@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="col">
+    <div class="h4">
+        Nueva Direccion
+    </div>
+    <div class="">
+        {% include 'direcciones/snippets/form.html' with message='Crear'%}
+    </div>
+</div>
+{% endblock %}

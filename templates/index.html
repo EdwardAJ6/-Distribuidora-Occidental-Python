@@ -1,5 +1,6 @@
 {% load static %}
 {% url 'carrito:carro' as 'carro' %}
+{% url 'direcciones:direcciones' as direcciones %}
 
 <!DOCTYPE html>
 <head>
@@ -29,12 +30,17 @@
             <ul class="menu">
                 <li><a href="{% url 'tienda' %}">Tienda</a></li>
                 <li class="nav-item"><a href="{% url 'carrito:carro' %}">Carrito</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#">Nosotros</a></li>
                 <li><a href="{% url 'edit_user'%}">Servicios</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' id=user.id %}">Mi cuenta</a></li>
                 {% endif %}
-                <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>
+
+                {% if not  user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'login' %}">Ingresar</a></li>    
+                {% else %}
+                
+                {% endif %}
             </ul>
 
         </nav>

@@ -43,11 +43,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
-<<<<<<< HEAD
             if user.is_staff:             
-=======
-            if user.is_staff:
->>>>>>> 3c0955eb2e61ca4e331b50c94139c3de5cbc2587
                 return redirect('admin:index')
             else:
                 return redirect('index')
