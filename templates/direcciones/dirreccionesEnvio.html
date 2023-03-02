@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="col">
+    <div class="h3">
+        Direcciones
+    </div>
+    <a href="{% url 'direcciones:create' %}"> Agregar nueva dirrecion</a>
+    <div class="mt-2">
+        {% for direcciones in object_list %}
+        <div class="mt-2">
+            {% include 'direcciones/snippets/direcciones.html' %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

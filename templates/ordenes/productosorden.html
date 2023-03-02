@@ -1,0 +1,18 @@
+<div>
+    <div>
+        {% if producto.Foto %}
+            <img src="{{ producto.Foto.url }}" alt="Imagen Del Producto" with="60" height="60">
+        {% endif %}
+    </div>
+
+    <div>
+        <div>
+            <strong>
+                <a href="{% url 'producto' producto.slug %}"> {{ producto.NombreProducto }}</a>
+            </strong>
+        </div>
+        <div>
+            <strong>{{ producto.precio}}</strong>
+        </div>
+    </div>
+</div>

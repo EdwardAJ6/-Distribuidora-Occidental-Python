@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="col">
+    <div class="h4">
+        Editar Direccion
+    </div>
+    <div class="">
+        {% include 'direcciones/snippets/form.html'  with message='Actualizar' %}
+    </div>
+</div>
+{% endblock %}

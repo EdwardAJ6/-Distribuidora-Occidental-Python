@@ -4,6 +4,7 @@
 
 
 {% block content %}
+{% url 'direcciones:direcciones' as direcciones %}
 
 <section class="section-pagetop bg-gray">
 <div class="container">
@@ -17,7 +18,7 @@
 	<aside class="col-md-3">
 		<nav class="list-group">
 			<a class="list-group-item" href="#"> Account overview  </a>
-			<a class="list-group-item" href="#"> Direcciones  </a>
+			<a class="list-group-item" href="{{ direcciones }}"> Direcciones  </a>
 			<a class="list-group-item" href="#"> Mis compras </a>
 			<a class="list-group-item active" href="#"> Configuracion </a>
 			<a class="list-group-item" href="#">Cerrar sesion</a>

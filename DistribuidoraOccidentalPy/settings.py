@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'usuario',
     'import_export',
     'correo',
+    'direcciones',
+
 ]
 
 # Jazmine Setings
