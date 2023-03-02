@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import UserRegistroForm
 from core.models import Producto
 from usuario.models import User
+#Modelo PQRS
+from core.models import Pqr
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -12,6 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 def tienda(request):
 
@@ -93,4 +96,13 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 def ordenar(request):
     return render(request,'ordenes/ordenar.html',{      
 })
+
+@login_required(login_url='login')
+def ver_pqrs(request):
+    pqrs = Pqr.objects.filter(usuario=request.user).order_by('id')
+    context = {
+        'pqrs': pqrs,
+    }
+    return render(request,'cuenta/pqrs.html',context)
+
 

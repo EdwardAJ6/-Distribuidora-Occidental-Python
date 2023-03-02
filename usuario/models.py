@@ -7,6 +7,8 @@ TIPODOC_CHOICES =(
     ("T.I", "Tarjeta de identidad"),
 )
 
+
+#Esta es la tabla que se está usando para las PQRS 
 class User(AbstractUser):
    direccion = models.CharField(max_length=200, blank=True, null=True,verbose_name="Direccion")
    telefono = models.CharField(max_length=20, blank=True, null=True,verbose_name="Telefono")

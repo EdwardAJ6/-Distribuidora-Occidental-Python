@@ -1,10 +1,10 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.models import User, Group
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 import uuid
+from usuario.models import User
 class Marca(models.Model):
     nombre = models.CharField(max_length=100)
 
@@ -82,6 +82,7 @@ TIPODOC_CHOICES =(
     ("T.I", "Tarjeta de identidad"),
 )
 
+# No se está usando esta tabla
 class Usuario(models.Model):
     num_doc = models.CharField(max_length=20, unique=True,verbose_name="Numero de documento")
     primer_nombre = models.CharField(max_length=50,verbose_name="Primer Nombre")
@@ -102,6 +103,8 @@ class Usuario(models.Model):
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
         db_table = 'usuario'
+
+
 
 TIPOPETI_CHOICES =(
     ("Queja", "Queja"),
@@ -265,7 +268,7 @@ def assign_group(sender, instance, created, **kwargs):
 
 
 class Pqr(models.Model):
-    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, verbose_name='Creada por')
+    usuario = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Creada por')
     titulo = models.CharField(max_length=30,verbose_name='Título')
     descripcion = models.TextField(verbose_name='Descripción')
     creada_en = models.DateField(auto_now_add=True, verbose_name='Fecha de creación')
