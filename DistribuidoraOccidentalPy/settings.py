@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'usuario',
     'correo',
     'direcciones',
+    'orden',
 ]
 
 MIDDLEWARE = [
