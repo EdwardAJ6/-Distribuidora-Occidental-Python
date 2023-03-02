@@ -10,14 +10,18 @@
         </div>
     </div>
     <div class="mt-2">
+    {% if update %}
     <a href="{% url 'direcciones:update' direcciones.pk%}" class="btn btn-info mt-2">Editar</a>
+
     {% if direcciones.default%}
     <div class="text-info">
         Direccion Principal
     </div>
     {% else %}
-    <a href="#" class="btn btn-danger mt-2">Favorito</a>
-    {% endif%}
+    <a href="{% url 'direcciones:default' direcciones.pk %}" class="btn btn-info mt-2">Establecer como dirección principal</a>
+    {% endif %}
+    {% endif %}
+
     </div>
     <br>
 </div>

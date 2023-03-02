@@ -12,6 +12,14 @@ class DirrecionesEnvios(models.Model):
     def __str__(self):
         return self.localidad
     
+    @classmethod
+    def set_default_false(self, user):
+        DirrecionesEnvios.objects.filter(user=user).filter(default=True).update(default=False)
+
+    def set_default(self):
+        self.default = True
+        self.save()   
+         
     class Meta:
         verbose_name = 'Dirrecion de Envio'
         verbose_name_plural = 'Dirreciones de Envios'
