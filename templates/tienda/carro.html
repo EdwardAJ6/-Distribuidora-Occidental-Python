@@ -56,7 +56,7 @@
                                 Subtotal({{ carrito.productos.count }}): <span class="text-danger">{{ carrito.subtotal }}</span>
                             </div>
                             <div class="mt-2">
-                                <a href="{% url 'ordenar' %}" class="btn btn-primary btn-block"> Proceder al pago</a>
+                                <a href="{% url 'orden:orden' %}" class="btn btn-primary btn-block"> Proceder al pago</a>
                                 <div class="mt-2">
                                     <a href="{% url 'tienda' %}" class="btn btn-light btn-block"> Continuar comprando</a>
                                 </div>
