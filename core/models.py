@@ -272,6 +272,8 @@ class Pqr(models.Model):
     titulo = models.CharField(max_length=30,verbose_name='Título')
     descripcion = models.TextField(verbose_name='Descripción')
     creada_en = models.DateField(auto_now_add=True, verbose_name='Fecha de creación')
+    respuesta = models.TextField(max_length=500,verbose_name= 'Respuesta',null=True)
+    fecha_respuesta = models.DateField(verbose_name='Respondida en',null=True)
 
 
 

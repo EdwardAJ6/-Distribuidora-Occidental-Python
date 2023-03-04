@@ -455,16 +455,19 @@ admin.site.register(InventarioSalida,InventarioSalidaAdmin)
 
 
 class PqrAdmin(admin.ModelAdmin):
-    list_display = ['usuario', 'titulo', 'descripcion', 'creada_en']
+    list_display = ['usuario', 'titulo', 'descripcion', 'creada_en', 'respuesta', 'fecha_respuesta']
+    readonly_fields = ('usuario', 'titulo', 'descripcion','creada_en')
+    def has_add_permission(self, request):
+        return False
     def generate_pdf(self, request, queryset):
             response = HttpResponse(content_type='application/pdf')
             response['Content-Disposition'] = 'attachment; filename="reporte_pqrs.pdf"'
             doc = SimpleDocTemplate(response, pagesize=landscape(letter))
             doc.title = 'Reporte de PQRS'
-            data = [['Creado por','Titulo','Descripción','Creada en']]
+            data = [['Creado por','Titulo','Descripción','Creada en', 'respuesta', 'fecha_respuesta']]
             for obj in queryset:
 
-                data.append([obj.usuario,obj.titulo,obj.descripcion,obj.creada_en])
+                data.append([obj.usuario,obj.titulo,obj.descripcion,obj.creada_en,obj.respuesta,obj.fecha_respuesta])
             tabla = Table(data)
             tabla.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
@@ -484,6 +487,8 @@ class PqrAdmin(admin.ModelAdmin):
     actions={generate_pdf}
 
 admin.site.register(Pqr,PqrAdmin)
+
+
 
 
 

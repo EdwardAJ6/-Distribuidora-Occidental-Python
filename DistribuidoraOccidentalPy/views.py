@@ -19,6 +19,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from core.forms import PqrForm
 from django.contrib import messages
+from datetime import datetime, timedelta
 
 def tienda(request):
 
@@ -104,7 +105,9 @@ def ordenar(request):
 @login_required(login_url='login')
 def ver_pqrs(request):
     pqrs = Pqr.objects.filter(usuario=request.user).order_by('id')
-    context = {
+    estimated_response_date = datetime.now() + timedelta(days=3)
+    context = { 
+        'estimated_response_date': estimated_response_date,
         'pqrs': pqrs,
     }
     return render(request,'cuenta/pqrs.html',context)
