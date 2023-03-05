@@ -1,3 +1,23 @@
 
 *.pyc
 DistribuidoraOccidentalPy/db.py
+carrito/__pycache__/
+carrito/migrations/
+
+core/__pycache__/
+core/migrations/
+
+correo/migrations/
+correo/__pycache__/
+
+direcciones/migrations/
+direcciones/__pycache__/
+
+inventario/migrations/
+inventario/__pycache__/
+
+orden/migrations/
+orden/__pycache__/
+
+usuario/migrations/
+usuario/__pycache__/
