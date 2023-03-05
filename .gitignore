@@ -1,3 +1,4 @@
 
 *.pyc
 DistribuidoraOccidentalPy/db.py
+carrito/__pycache__/*
