@@ -53,14 +53,14 @@ class Producto(models.Model):
         db_table = 'productos'
     
 def set_slug(sender, instance, *args, **kwargs):
-        if instance.NombreProducto and not instance.slug:
-            slug = slugify(instance.NombreProducto)
+    slug = instance.slug or slugify(instance.NombreProducto)  # Asigna un valor predeterminado si instance.slug no está definido
 
-            while Producto.objects.filter(slug=slug).exists():
-                slug = slugify(
-                    '{}-{}'.format(instance.NombreProducto, str(uuid.uuid4())[:8])
-                )
-        instance.slug = slug
+    while Producto.objects.filter(slug=slug).exists():
+        slug = slugify(
+            '{}-{}'.format(instance.NombreProducto, str(uuid.uuid4())[:8])
+        )
+    instance.slug = slug
+
 
 pre_save.connect(set_slug, sender=Producto)
 
