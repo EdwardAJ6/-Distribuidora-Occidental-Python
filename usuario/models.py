@@ -8,7 +8,7 @@ TIPODOC_CHOICES =(
 )
 
 class User(AbstractUser):
-   direccion = models.CharField(max_length=200, blank=True, null=True,verbose_name="Direccion")
+   
    telefono = models.CharField(max_length=20, blank=True, null=True,verbose_name="Telefono")
    tipoDoc = models.CharField(max_length=50,choices=TIPODOC_CHOICES,blank=True, null=True,verbose_name="Tipo de documento")
    primer_apellido = models.CharField(max_length=50,blank=True, null=True,verbose_name="Primer Apellido")

@@ -13,6 +13,8 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
 
 def tienda(request):
 
@@ -87,8 +89,8 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
     success_url = reverse_lazy('index')
     success_message = "User updated"
 
-    def get_object(slef):
-        return slef.request.user
+    def get_object(self):
+        return self.request.user
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR,
@@ -98,4 +100,3 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 def ordenar(request):
     return render(request,'ordenes/ordenar.html',{      
 })
-

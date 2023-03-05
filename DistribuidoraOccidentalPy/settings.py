@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'correo',
     'direcciones',
     'orden',
+    'inventario',
 ]
 
 # Jazmine Setings

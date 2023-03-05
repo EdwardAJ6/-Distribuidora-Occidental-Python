@@ -25,6 +25,9 @@ urlpatterns = [
     path('edit_profile/', views.UpdateUserView.as_view(), name="edit_user"),
     path('direcciones/', include('direcciones.urls')),
     path('orden/', include('orden.urls')),
+    path('inventario/', include('inventario.urls')),
+
+
 
 ]
 
