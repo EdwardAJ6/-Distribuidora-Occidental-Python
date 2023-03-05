@@ -8,7 +8,7 @@
       <h2>Revisa tu pedido</h2>
   </div>
 
-  <div class="card">
+   <div class="card w-50">
       <div class="card-body">
           {% for producto in carrito.productos.all %}
               {% include 'ordenes/snippets/productosorden.html' %}
@@ -17,7 +17,8 @@
   </div>
 
   <div class="col"> 
-      {% include 'ordenes/snippets/resumen.html'%}
+        {% url 'orden:direccion' as next_url %}
+      {% include 'ordenes/snippets/resumen.html' with next_url=next_url %}
   </div>
 </div>
 {% endblock %}

@@ -2,59 +2,60 @@
 {% load producto_extras %}
 
 {% if carrito.productos.exists %}
-    <div> 
-        <table> 
-            <thead> 
-                <tr> 
-                    <th scope="col"> </th>
-                    <th scope="col"> </th>
-                    <th scope="col"> </th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                </tr>
-            </thead>
-            <tbody> 
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cp in carrito.products_related.all %}
+                {% with producto=cp.producto %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {% if producto.Foto %}
+                                <img src="{{ producto.Foto.url }}" alt="Imagen del producto" class="img-thumbnail">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'producto' producto.slug %}">{{ producto.NombreProducto }}</a>
+                            {% include 'carrito/eliminar.html' %}
+                        </td>
+                        <td>{{ cp.cantidad }}</td>
+                        <td><span class="font-weight-bold">{{ producto.precio }}</span></td>
+                        <td>
+                            {% include 'carrito/eliminar.html' %}
+                        </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-                {% for cp in carrito.products_related.all %}
-                    {% with producto=cp.producto %}
-                        <tr>
-                            <th>{{ forloop.counter }}</th>
-                            <th>
-                                {% if producto.Foto %}
-                                    <img src="{{ producto.Foto.url }}" alt="Imagen del producto" width="60" height="60">
-                                {% endif %}
-                            </th>
-                            <th>
-                                <a href="{% url 'producto' producto.slug %}">{{ producto.NombreProducto }}</a>
-                                {% include 'carrito/eliminar.html' %}
-                            </th>
-                            <th>{{ cp.cantidad }}</th>
-                            <th>
-                                <span class="">{{ producto.precio }}</span>
-                            </th>
-                        </tr>
-                    {% endwith %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <div class="col"> 
+{% if carrito.products_related.all %}
+    <div class="col-4">
         <div class="card">
             <div class="card-body">
                 <div class="font-weight-bold">
-                    Subtotal({{ carrito.productos.count }}): <span class="text-danger">{{ carrito.subtotal }}</span>
+                    Subtotal ({{ carrito.productos.count }}): <span class="text-danger">{{ carrito.subtotal }}</span>
                 </div>
                 <div class="mt-2">
-                    <a href="{% url 'orden:orden'%}" class="btn btn-warning"> Proceder al pago</a>
+                    <a href="{% url 'orden:orden'%}" class="btn btn-warning btn-block">Proceder al pago</a>
                 </div>
             </div>
         </div>
     </div>
-
-    {% else %}
-        <div>
-            <p class="h3">Tu carrito de compras esta vacio.</p>
-            <a href="{% url 'tienda' %}">Seguir comprando</a>
-        </div>
-    {% endif %}
+{% else %}
+    <div class="col-12">
+        <p class="h3">Tu carrito de compras esta vacio.</p>
+        <a href="{% url 'tienda' %}" class="btn btn-primary">Seguir comprando</a>
+    </div>
+{% endif %}

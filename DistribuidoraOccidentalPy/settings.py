@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'correo',
     'direcciones',
     'orden',
+    'inventario',
 ]
 
 # Jazmine Setings
@@ -171,7 +172,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -201,7 +202,7 @@ LOGOUT_REDIRECT_URL ="login"
 ##Variables para el Correo
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'distrioccidentalzz@gmail.com'
-EMAIL_HOST_PASSWORD = 'ntrbcukxnkinwdjt'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465

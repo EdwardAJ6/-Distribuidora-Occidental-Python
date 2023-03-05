@@ -13,6 +13,13 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from core.forms import PqrForm
+from core.models import Pqr
+
 
 def tienda(request):
 
@@ -87,8 +94,8 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
     success_url = reverse_lazy('index')
     success_message = "User updated"
 
-    def get_object(slef):
-        return slef.request.user
+    def get_object(self):
+        return self.request.user
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR,
@@ -99,3 +106,30 @@ def ordenar(request):
     return render(request,'ordenes/ordenar.html',{      
 })
 
+
+@login_required(login_url='login')
+def ver_pqrs(request):
+    pqrs = Pqr.objects.filter(usuario=request.user).order_by('id')
+    context = {
+        'pqrs': pqrs,
+    }
+    return render(request,'cuenta/pqrs.html',context)
+
+
+@login_required(login_url='login')
+def añadir_pqrs(request):
+
+        url = request.META.get('HTTP_REFERER')
+        if request.method == 'POST':
+            form = PqrForm(request.POST)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.usuario_id = request.user.id  # asignar el id del usuario en la columna "usuario_id"
+                data.save()
+                messages.success(request, 'Gracias! Tu opinión ha sido enviada.')
+                return redirect(url)
+            else:
+                print(form.errors)
+        # crear una respuesta si la solicitud no es del tipo POST o el formulario no es válido
+        return HttpResponse("La solicitud no es válida")

@@ -1,14 +1,17 @@
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
+from orden.common import OrdenEstado
 
 TIPODOC_CHOICES =(
     ("C.C", "'Cédula de ciudadanía"),
     ("T.I", "Tarjeta de identidad"),
 )
 
+
+#Esta es la tabla que se está usando para las PQRS 
 class User(AbstractUser):
-   direccion = models.CharField(max_length=200, blank=True, null=True,verbose_name="Direccion")
+   
    telefono = models.CharField(max_length=20, blank=True, null=True,verbose_name="Telefono")
    tipoDoc = models.CharField(max_length=50,choices=TIPODOC_CHOICES,blank=True, null=True,verbose_name="Tipo de documento")
    primer_apellido = models.CharField(max_length=50,blank=True, null=True,verbose_name="Primer Apellido")
@@ -24,6 +27,9 @@ class User(AbstractUser):
 
    def has_direcciones(self):
         return self.shipping_address is not None
+    
+   def ordenes_completadas(self):
+        return self.orden_set.filter(estado=OrdenEstado.COMPLETADA).order_by('-id')
 
 class Customer(User):
     class Meta:

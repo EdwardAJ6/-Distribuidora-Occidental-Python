@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section-pagetop bg-gray">
+	<div class="container">
+		<h2 class="title-page">Mis PQRS </h2>
+	</div>
+	</section>
+	
+	<section class="section-content padding-y">
+	<div class="container">
+	
+	<div class="row">
+		<aside class="col-md-3">
+			<nav class="list-group">
+				<a class="list-group-item" href="#"> Account overview  </a>
+				<a class="list-group-item" href="#"> Direcciones  </a>
+				<a class="list-group-item" href="#"> Mis compras </a>
+				<a class="list-group-item active" href="{% url 'pqrs'%}">Mis PQRS</a>
+				<a class="list-group-item" href="#"> Configuracion </a>
+				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
+			</nav>
+		</aside>
+		<main class="col-md-9">
+	
+			<h4>Hola :D</h4>
+
+			<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	Launch demo modal
+  </button>
+  
+  <!-- Modal Boostrap 4.3 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form action="{% url 'subir_pqr' %}" method="POST">
+				{% csrf_token %}
+				<div class="modal-body">
+				  <h5 class="text-center">Cuéntanos, ¿qué sucede?</h5>
+				  <div class="form-row">
+					<div class="col form-group">
+					  <label for="">Título o Asunto de la PQR</label>
+					  <input type="text" name="titulo" class="form-control" required />
+					</div>
+				  </div>
+	  
+				  <div class="form-row">
+					<div class="col form-group">
+					  <label for="">Descripción</label>
+					  <textarea
+						name="descripcion"
+						rows="2"
+						class="form-control"
+					  ></textarea>
+					</div>
+				  </div>
+				</div>
+				<div class="modal-footer">
+				  <button type="submit" class="btn btn-primary">
+					Guardar cambios
+				  </button>
+				</div>
+			  </form>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+	
+			<table class="table">
+				<thead>
+				  <tr>
+					<th scope="col">Número de PQR</th>
+					<th scope="col">Título</th>
+					<th scope="col">Descripción</th>
+					<th scope="col">Fecha de Creación</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for pqr in pqrs %}
+				  <tr>
+					<th scope="row">{{pqr.id}}</th>
+					<td>{{pqr.titulo}}</td>
+					<td>{{pqr.descripcion}}</td>
+					<td>{{pqr.creada_en}}</td>
+				  </tr>
+				  {% endfor %}
+				</tbody>
+			  </table>
+			  
+		
+		</main>
+	</div>
+	</div>
+</section>
+{% endblock %}

@@ -6,6 +6,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Producto
 
+
+
 class VistaListaProductos(ListView):
     template_name = 'tienda/tienda.html'
     queryset = Producto.objects.all().order_by('-id')
@@ -35,3 +37,4 @@ class VistaListaBuscarProductos(ListView):
         context ['query'] = self.query()
           
         return context
+    
