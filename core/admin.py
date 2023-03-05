@@ -137,7 +137,7 @@ class ProveedorAdmin(admin.ModelAdmin):
     generate_pdf.short_description = 'Reporte de los proveedores'
     actions={generate_pdf}
 admin.site.register(Proveedor,ProveedorAdmin)
-    
+
 class PqrAdmin(admin.ModelAdmin):
     list_display = ['usuario', 'titulo', 'descripcion', 'creada_en']
     def generate_pdf(self, request, queryset):
