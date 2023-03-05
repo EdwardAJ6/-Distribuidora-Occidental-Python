@@ -10,7 +10,7 @@ class DirrecionesEnvios(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.localidad
+        return self.direccion
     
     @classmethod
     def set_default_false(self, user):
