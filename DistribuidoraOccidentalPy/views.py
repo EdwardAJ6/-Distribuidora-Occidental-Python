@@ -5,8 +5,6 @@ from django.contrib import messages
 from .forms import UserRegistroForm
 from core.models import Producto
 from usuario.models import User
-#Modelo PQRS
-from core.models import Pqr
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -14,9 +12,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
 from core.forms import PqrForm
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -48,10 +48,14 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        
+        #if request.GET.get('next'):
+         #   return HttpResponseRedirect(request.GET['next']) 
+        
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
-            if user.is_staff:
+            if user.is_staff:             
                 return redirect('admin:index')
             else:
                 return redirect('index')
@@ -90,8 +94,8 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
     success_url = reverse_lazy('index')
     success_message = "User updated"
 
-    def get_object(slef):
-        return slef.request.user
+    def get_object(self):
+        return self.request.user
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR,
@@ -101,6 +105,7 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 def ordenar(request):
     return render(request,'ordenes/ordenar.html',{      
 })
+
 
 @login_required(login_url='login')
 def ver_pqrs(request):
@@ -130,5 +135,3 @@ def añadir_pqrs(request):
                 print(form.errors)
         # crear una respuesta si la solicitud no es del tipo POST o el formulario no es válido
         return HttpResponse("La solicitud no es válida")
-
-

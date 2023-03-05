@@ -1,0 +1,28 @@
+<div class="card w-50">
+    <h5 class=" card-header"></h5>
+    <div class="card-body">
+        <h5 class="card-tittle" >{{direcciones.direccion}}</h5>
+        <div class="card-tittle">
+            {{direcciones.localidad}}
+        </div>
+        <div class="card-tittle">
+            {{direcciones.barrio}}
+        </div>
+    </div>
+    <div class="mt-2">
+    {% if update %}
+    <a href="{% url 'direcciones:update' direcciones.pk%}" class="btn btn-info mt-2">Editar</a>
+
+    {% if direcciones.default%}
+    <div class="text-info">
+        Direccion Principal
+    </div>
+    {% else %}
+    <a href="{% url 'direcciones:default' direcciones.pk %}" class="btn btn-info mt-2">Establecer como dirección principal</a>
+    {% endif %}
+    {% endif %}
+
+    </div>
+    <br>
+</div>
+<br>    

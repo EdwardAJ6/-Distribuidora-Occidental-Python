@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="container">
+<h1 class="text-center">Reporte de Movimientos de Inventario</h1>
+
+	<p>Período analizado: {{ fecha_inicio }} - {{ fecha_fin }}</p>
+
+	{% if nombres %}
+		{% load static %}
+
+		<script src="{% static 'js/Chart.min.js' %}"></script>
+
+		<canvas id="grafico-movimientos"></canvas>
+
+		<script>
+			var ctx = document.getElementById('grafico-movimientos').getContext('2d');
+
+			var chart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: {{ nombres|safe }},
+			        datasets: [{
+			            label: 'Entradas',
+			            data: {{ entradas|safe }},
+			            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+			            borderColor: 'rgba(54, 162, 235, 1)',
+			            borderWidth: 1
+			        },
+			        {
+			            label: 'Salidas',
+			            data: {{ salidas|safe }},
+			            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+			            borderColor: 'rgba(255, 99, 132, 1)',
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero: true
+			                }
+			            }]
+			        }
+			    }
+			});
+		</script>
+	{% else %}
+		<p>No hay datos para mostrar.</p>
+	{% endif %}
+    
+{% endblock %}

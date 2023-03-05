@@ -4,6 +4,7 @@ import decimal
 from django.db import models
 from usuario.models import User
 from core.models import Producto
+from orden.common import OrdenEstado
 
 from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
@@ -26,6 +27,9 @@ class Carro(models.Model):
         self.update_subtotals()
         self.update_total()
         
+        if self.orden:
+            self.orden.update_total()
+        
     def update_subtotals(self):
         self.subtotal = sum([
            cp.cantidad * cp.producto.precio for cp in self.products_related()
@@ -39,6 +43,11 @@ class Carro(models.Model):
     def products_related(self):
         return self.productoscarro_set.select_related('producto')
 
+    @property
+    def orden(self):
+       return self.orden_set.filter(estado=OrdenEstado.CREADO).first()
+
+        
 class ProductosCarroManager(models.Manager):
     
     def crear_o_actualiza_cantidad(self, carrito, producto, cantidad=1):

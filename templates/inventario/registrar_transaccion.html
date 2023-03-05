@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form class="form-inline" method="POST" action="{% url 'registrar_transaccion_proveedor' proveedor_id=0 %}">
+  {% csrf_token %}
+  
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="proveedor" class="sr-only">Proveedor:</label>
+    <select class="form-control" id="proveedor" name="proveedor">
+      <option value=" ">Todos los proveedores</option>
+      {% for proveedor in proveedores %}
+        <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" id="filtrar-link">FILTRAR</button>
+</form>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Proveedor</th>
+      <th>Cantidad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in productos %}
+      <tr>
+        <td>{{ producto.NombreProducto }}</td>
+        <td>{{ producto.proveedor.nombre }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="cantidad_entrada_{{ producto.id }}" class="col-sm-2 col-form-label">Entrada:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="cantidad_entrada_{{ producto.id }}" name="cantidad" min="1" value="1">
+              </div>
+              <div class="col-sm-6">
+                <input type="hidden" name="tipo" value="entrada">
+                <input type="hidden" name="producto" value="{{ producto.id }}">
+                <button type="submit" class="btn btn-primary">Registrar entrada</button>
+              </div>
+            </div>
+          </form>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="cantidad_salida_{{ producto.id }}" class="col-sm-2 col-form-label">Salida:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="cantidad_salida_{{ producto.id }}" name="cantidad" min="1" value="1" max="{{producto.cantidad}}">
+              </div>
+              <div class="col-sm-6">
+                <input type="hidden" name="tipo" value="salida">
+                <input type="hidden" name="producto" value="{{ producto.id }}">
+                <button type="submit" class="btn btn-primary">Registrar salida</button>
+              </div>
+            </div>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  document.getElementById('filtrar-link').addEventListener('click', function(e) {
+    e.preventDefault(); // evita que el enlace redirija a una nueva página
+    var proveedorId = document.getElementById('proveedor').value.trim() || null;
+    var url = '{% url "registrar_transaccion_proveedor" proveedor_id=0 %}'.replace('0', proveedorId !== null ? proveedorId : '');
+    window.location.href = url; // redirige a la nueva URL con el proveedor seleccionado
+  });
+</script>
+{% endblock %}
