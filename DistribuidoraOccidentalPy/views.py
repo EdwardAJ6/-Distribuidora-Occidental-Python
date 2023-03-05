@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import UserRegistroForm
-from core.models import Producto
+from core.models import Producto,Pqr
 from usuario.models import User
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
