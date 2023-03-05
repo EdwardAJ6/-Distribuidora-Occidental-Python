@@ -10,6 +10,9 @@ class Inventario(models.Model):
     cantidad = models.IntegerField()
     ubicacion = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.ubicacion 
+
 class Transaccion(models.Model):
     TIPO_CHOICES = (
         ('entrada', 'Entrada'),
@@ -20,6 +23,9 @@ class Transaccion(models.Model):
     cantidad = models.IntegerField()
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fechaDos = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.producto.NombreProducto
 
 @receiver(post_save, sender=Producto)
 def actualizar_cantidad_inventario(sender, instance, **kwargs):
@@ -35,3 +41,10 @@ def actualizar_cantidad_inventario(sender, instance, **kwargs):
 
     # Guardar los cambios en el modelo Inventario
     inventario.save()
+
+
+@receiver(post_save, sender=Inventario)
+def actualizar_ubicacion(sender, instance, created, **kwargs):
+    if created:
+        instance.ubicacion = "Bodega"
+        instance.save()
