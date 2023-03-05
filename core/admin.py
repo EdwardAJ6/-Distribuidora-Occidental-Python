@@ -139,8 +139,9 @@ class ProveedorAdmin(admin.ModelAdmin):
 admin.site.register(Proveedor,ProveedorAdmin)
 
 class PqrAdmin(admin.ModelAdmin):
-    list_display = ['usuario', 'titulo', 'descripcion', 'creada_en', 'respuesta', 'fecha_respuesta']
-    readonly_fields = ('usuario', 'titulo', 'descripcion','creada_en')
+    list_display = ['usuario', 'titulo', 'descripcion', 'tipo', 'creada_en', 'respuesta', 'fecha_respuesta']
+    readonly_fields = ('usuario', 'titulo', 'tipo', 'descripcion','creada_en')
+    list_filter = ['creada_en', 'tipo', 'fecha_respuesta']
     def has_add_permission(self, request):
         return False
     def generate_pdf(self, request, queryset):
