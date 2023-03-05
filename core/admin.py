@@ -1,3 +1,4 @@
+from io import BytesIO
 from django.contrib import admin
 # Reportes PDF (IVAN HIJUEPUTA)
 from django.http import HttpResponse
@@ -5,7 +6,11 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
-
+#Reportes gráficos 
+import matplotlib.pyplot as plt
+from reportlab.pdfgen import canvas
+from django.db.models import Count
+from reportlab.lib.utils import ImageReader
 
 from .models import *
 
@@ -141,7 +146,7 @@ admin.site.register(Proveedor,ProveedorAdmin)
 class PqrAdmin(admin.ModelAdmin):
     list_display = ['usuario', 'titulo', 'descripcion', 'tipo', 'creada_en', 'respuesta', 'fecha_respuesta']
     readonly_fields = ('usuario', 'titulo', 'tipo', 'descripcion','creada_en')
-    list_filter = ['creada_en', 'tipo', 'fecha_respuesta']
+    list_filter = ['creada_en', 'tipo', 'fecha_respuesta', 'respuesta']
     def has_add_permission(self, request):
         return False
     def generate_pdf(self, request, queryset):
@@ -167,13 +172,48 @@ class PqrAdmin(admin.ModelAdmin):
             header = Paragraph("Reporte de PQRS", style=styles['Heading1'])
             doc.build([header, tabla])
             return response
+    
+    def reporte_pqrs(self, request, queryset):
+    # Obtener los tipos de PQRS y sus cantidades
+        tipos_pqrs = queryset.values_list('tipo').annotate(total=Count('tipo'))
+    
+        # Crear una lista con los tipos de PQRS y sus cantidades
+        labels = [tipo[0] for tipo in tipos_pqrs]
+        values = [tipo[1] for tipo in tipos_pqrs]
+        
+        # Crear el gráfico de pastel
+        fig1, ax1 = plt.subplots()
+        ax1.pie(values, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax1.axis('equal')  # Asegurar que el gráfico sea un círculo
+        
+        # Guardar el gráfico en un archivo temporal
+        tmpfile = BytesIO()
+        plt.savefig(tmpfile, format='png')
+        plt.close(fig1)
+        
+        # Crear el PDF y agregar el gráfico
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="reporte_pqrs.pdf"'
+        
+        pdf = canvas.Canvas(response)
+        pdf.drawString(100, 400, "Reporte de PQRS")
+        pdf.drawImage(ImageReader(tmpfile), 0, 400)
+        pdf.showPage()
+        pdf.save()
+        
+        # Devolver la respuesta con el PDF generado
+        return response
 
+    reporte_pqrs.short_description = "Generar reporte de PQRS"
+    
+  
+    
+
+    
     generate_pdf.short_description = 'Reporte de PQRS'
-    actions={generate_pdf}
-
+    actions={generate_pdf,reporte_pqrs}
+        
 admin.site.register(Pqr,PqrAdmin)
-
-
 
 
 
