@@ -27,7 +27,9 @@
 				{% else %}
 				<a class="list-group-item" href="{% url 'productosbajos'%}">Productos bajos de Stock</a>
 				<a class="list-group-item" href="{% url 'registrar_transaccion'%}">Transaccion</a>
-				<a class="list-group-item" href="{% url 'reporte_movimientos_inventario'%}"> Reporte de Inventario  </a>						
+				<a class="list-group-item" href="{% url 'reporte_movimientos_inventario'%}"> Reporte de Inventario  </a>
+				<a class="list-group-item" href="{% url 'enviar_correos' %}" >Enviar correos</a>
+						
 				{% endif %}
 				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
 
