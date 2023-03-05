@@ -5,8 +5,6 @@ from django.contrib import messages
 from .forms import UserRegistroForm
 from core.models import Producto
 from usuario.models import User
-#Modelo PQRS
-from core.models import Pqr
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -14,14 +12,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render
-from core.forms import PqrForm
-from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from core.forms import PqrForm
+from core.models import Pqr
+
 
 def tienda(request):
 
@@ -108,6 +106,7 @@ def ordenar(request):
     return render(request,'ordenes/ordenar.html',{      
 })
 
+
 @login_required(login_url='login')
 def ver_pqrs(request):
     pqrs = Pqr.objects.filter(usuario=request.user).order_by('id')
@@ -134,5 +133,3 @@ def añadir_pqrs(request):
                 print(form.errors)
         # crear una respuesta si la solicitud no es del tipo POST o el formulario no es válido
         return HttpResponse("La solicitud no es válida")
-
-
