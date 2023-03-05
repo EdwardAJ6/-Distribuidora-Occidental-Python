@@ -2,19 +2,12 @@ import uuid
 from django.db import models
 from usuario.models import User
 from carrito.models import Carro
+from .common import OrdenEstado
+from .common import choices
 from enum import Enum
 from direcciones.models import DirrecionesEnvios
 
 from django.db.models.signals import pre_save
-
-class OrdenEstado(Enum):
-    CREADO = 'CREADO'
-    PAGADO = 'PAGADO'
-    COMPLETADA = 'COMPLETADO'
-    CANCELADA = 'CANCELADO'
-    
-choices = [ (tag, tag.value) for tag in OrdenEstado ]
-
 class Orden(models.Model):
     orden_id = models.CharField(max_length=100, null=False, blank=False, unique=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,6 +23,14 @@ class Orden(models.Model):
     def __str__(self):
         return self.orden_id
     
+    def cancel(self):
+        self.status = OrdenEstado.CANCELADA
+        self.save()
+    
+    def complete(self):
+        self.estado = OrdenEstado.COMPLETADA
+        self.save()
+        
     def update_total(self):
         self.total = self.get_total()
         self.save()

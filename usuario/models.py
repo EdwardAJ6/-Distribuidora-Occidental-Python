@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
+from orden.common import OrdenEstado
 
 TIPODOC_CHOICES =(
     ("C.C", "'Cédula de ciudadanía"),
@@ -24,6 +25,9 @@ class User(AbstractUser):
 
    def has_direcciones(self):
         return self.shipping_address is not None
+    
+   def ordenes_completadas(self):
+        return self.orden_set.filter(estado=OrdenEstado.COMPLETADA).order_by('-id')
 
 class Customer(User):
     class Meta:

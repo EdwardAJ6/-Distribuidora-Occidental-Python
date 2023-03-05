@@ -9,7 +9,14 @@
       </div>
       <div class="">
         {% include 'direcciones/snippets/direcciones.html' %} 
-        <a href="{% url 'orden:seleccionar' %}">Elige una direccion</a>
+
+        <div class="mt-2"> 
+          <a href="{% url 'orden:confirmar' %}" class="btn btn-warning"> Entregar a esta direccion</a>
+        </div>
+
+        <div class="mt-2"> 
+          <a href="{% url 'orden:seleccionar' %}">Elige otra direccion</a>
+        </div>
       </div>
 
     {% else %}

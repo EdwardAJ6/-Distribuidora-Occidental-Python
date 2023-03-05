@@ -10,3 +10,6 @@ def crear_obtener_orden(carrito, request):
         request.session['orden_id'] = orden.orden_id
     
     return orden
+
+def destruir_orden(request):
+    request.session['orden_id'] = None

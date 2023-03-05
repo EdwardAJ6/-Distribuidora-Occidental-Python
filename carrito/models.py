@@ -4,6 +4,7 @@ import decimal
 from django.db import models
 from usuario.models import User
 from core.models import Producto
+from orden.common import OrdenEstado
 
 from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
@@ -44,7 +45,8 @@ class Carro(models.Model):
 
     @property
     def orden(self):
-        return self.orden_set.first()
+       return self.orden_set.filter(estado=OrdenEstado.CREADO).first()
+
         
 class ProductosCarroManager(models.Manager):
     
