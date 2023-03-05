@@ -270,6 +270,8 @@ def assign_group(sender, instance, created, **kwargs):
 class Pqr(models.Model):
     usuario = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Creada por')
     titulo = models.CharField(max_length=30,verbose_name='Título')
+    ELECCIONES = [   ('Peticion', 'Peticion'),   ('Queja', 'Queja'),   ('Reclamo', 'Reclamo'),   ('Sugerencia', 'Sugerencia')]
+    tipo = models.CharField(max_length=10, choices=ELECCIONES)
     descripcion = models.TextField(verbose_name='Descripción')
     creada_en = models.DateField(auto_now_add=True, verbose_name='Fecha de creación')
     respuesta = models.TextField(max_length=500,verbose_name= 'Respuesta',null=True)

@@ -47,6 +47,20 @@
 				{% csrf_token %}
 				<div class="modal-body">
 				  <h5 class="text-center">Cuéntanos, ¿qué sucede?</h5>
+
+				  <div class="form-row">
+					<div class="col form-group">
+					  <label for="">Tipo de PQR</label>
+					  <select name="tipo" class="form-control" required>
+						<option value="">Seleccione un tipo</option>
+						<option value="Peticion">Petición</option>
+						<option value="Queja">Queja</option>
+						<option value="Reclamo">Reclamo</option>
+						<option value="Sugerencia">Sugerencia</option>
+					  </select>
+					</div>
+				  </div>
+
 				  <div class="form-row">
 					<div class="col form-group">
 					  <label for="">Título o Asunto de la PQR</label>
