@@ -5,6 +5,8 @@ from django.contrib.auth.models import User, Group
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 import uuid
+
+
 class Marca(models.Model):
     nombre = models.CharField(max_length=100)
 

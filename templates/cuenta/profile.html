@@ -34,13 +34,13 @@
 						{% csrf_token %}
 						
 					   <div class="col form-group">
-						<label>Primer Nombre</label>
+						<label>Nombre</label>
 						<input name='first_name' id="first_name" type="text" class="form-control" value="{{ user.first_name}}">										 
 					   </div> 
 					   <input type="hidden" name="id" value="{{user.pk}}">
 	
-					   <div class="col">
-						<label>Primer  Apellido</label>
+					   <div class="col form-group">
+						<label>Apellido</label>
 						<input  type="text" class="form-control" value="{{ user.primer_apellido}}">
 					   </div>
 					   <div class="col form-group">
@@ -60,9 +60,11 @@
 					   </div> 
 				   </div>
 				 <BR></BR>
+
+				 <button>  <a href="{% url 'edit_user'%}">Actualizar</a> </button>
 	
-				 <a href="{% url 'edit_user'%}">Actualizar</a>
-				   <br><br><br><br><br><br>
+				 
+
 				</div>
 				<div class="form-group col-md-5">
 					<div class="col">

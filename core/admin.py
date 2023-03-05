@@ -1,10 +1,13 @@
+import matplotlib.pyplot as plt
+from django.http import HttpResponse
+from io import BytesIO
 from django.contrib import admin
-# Reportes PDF (IVAN HIJUEPUTA)
 from django.http import HttpResponse
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
+
 
 
 from .models import *
@@ -20,7 +23,7 @@ class ProductoAdmin(admin.ModelAdmin):
             data = [['Nombre de la categoria',]]
             for obj in queryset:
 
-                data.append([obj.nombreCategoria])
+                data.append([obj.Categoria])
             tabla = Table(data)
             tabla.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
@@ -36,8 +39,30 @@ class ProductoAdmin(admin.ModelAdmin):
             doc.build([header, tabla])
 
             return response
+    def reporte_stock_pdf(modeladmin, request, queryset):
+        stock = queryset.values_list('NombreProducto', 'StockDisponible')
+
+        # Crear una figura de Matplotlib con el gráfico de barras del stock
+        fig, ax = plt.subplots()
+        ax.bar(*zip(*stock))
+        ax.set_xlabel('Productos')
+        ax.set_ylabel('Stock')
+        ax.set_title('Stock de productos')
+
+        # Guardar la figura en un archivo PDF utilizando BytesIO
+        buffer = BytesIO()
+        plt.savefig(buffer, format='pdf')
+        buffer.seek(0)
+
+        # Devolver un objeto HttpResponse con el contenido del archivo PDF
+        response = HttpResponse(buffer, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=reporte_stock.pdf'
+        return response
+    reporte_stock_pdf.short_description = 'Generar reporte de stock en PDF'
+
+
     generate_pdf.short_description = 'Reporte de las categorias productos'
-    actions={generate_pdf}
+    actions = [reporte_stock_pdf, generate_pdf]
 admin.site.register(Producto,ProductoAdmin)
 
 
@@ -69,8 +94,30 @@ class MarcaAdmin(admin.ModelAdmin):
             doc.build([header, tabla])
 
             return response
+    def reporte_marcas_pdf(modeladmin, request, queryset):
+        # Obtener la cantidad de marcas
+        cantidad_marcas = queryset.count()
+
+        # Crear una figura de Matplotlib con el gráfico de barras de la cantidad de marcas
+        fig, ax = plt.subplots()
+        ax.bar(['Marcas'], [cantidad_marcas])
+        ax.set_xlabel('Marcas')
+        ax.set_ylabel('Cantidad')
+        ax.set_title('Cantidad de marcas')
+
+        # Guardar la figura en un archivo PDF utilizando BytesIO
+        buffer = BytesIO()
+        plt.savefig(buffer, format='pdf')
+        buffer.seek(0)
+
+        # Devolver un objeto HttpResponse con el contenido del archivo PDF
+        response = HttpResponse(buffer, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=reporte_marcas.pdf'
+        return response
+    reporte_marcas_pdf.short_description = 'Generar reporte de marcas en PDF'
+
     generate_pdf.short_description = 'Reporte de los marcas'
-    actions={generate_pdf}   
+    actions = [reporte_marcas_pdf,generate_pdf]
 admin.site.register(Marca,MarcaAdmin)
 
 
