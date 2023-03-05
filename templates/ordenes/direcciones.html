@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="col">
+    {% if direcciones %}
+      <div class="h3">
+        Recoge el pedido en el punto de entrega.
+      </div>
+      <div class="">
+        {% include 'direcciones/snippets/direcciones.html' %} 
+        <a href="{% url 'orden:seleccionar' %}">Elige una direccion</a>
+      </div>
+
+    {% else %}
+      <div class="h3">
+        Registra tu dirección de envío
+      </div>       
+      <div class="">
+        {% url 'orden:direccion' as next_url %}
+        <a href="{% url 'direcciones:create' %}?next={{ next_url }}">Nueva dirección</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

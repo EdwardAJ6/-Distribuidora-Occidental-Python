@@ -25,7 +25,14 @@ urlpatterns = [
     path('edit_profile/', views.UpdateUserView.as_view(), name="edit_user"),
     # ruta PQRS 
     path('PQRS/',views.ver_pqrs, name='pqrs'),
-    path('subir_pqr/',views.añadir_pqrs, name='subir_pqr')
+    path('subir_pqr/',views.añadir_pqrs, name='subir_pqr'),
+    path('direcciones/', include('direcciones.urls')),
+    path('orden/', include('orden.urls')),
+    path('inventario/', include('inventario.urls')),
+    path('correo/', include('correo.urls')),
+
+
+
 
 ]
 

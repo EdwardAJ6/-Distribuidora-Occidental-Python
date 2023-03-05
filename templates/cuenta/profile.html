@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+{% url 'direcciones:direcciones' as direcciones %}
+
 <section class="section-pagetop bg-gray">
 	<div class="container">
 		<h2 class="title-page">Mi cuenta {{ user.first_name}} {{ user.primer_apellido}}</h2>
@@ -15,12 +17,21 @@
 	<div class="row">
 		<aside class="col-md-3">
 			<nav class="list-group">
+				{% if not user.is_staff %}
 				<a class="list-group-item" href="#"> Account overview  </a>
-				<a class="list-group-item" href="#"> Direcciones  </a>
+				<a class="list-group-item" href="{{ direcciones }}"> Direcciones  </a>
 				<a class="list-group-item" href="#"> Mis compras </a>
 				<a class="list-group-item" href="{% url 'pqrs'%}">Mis PQRS</a>
 				<a class="list-group-item active" href="#"> Configuracion </a>
+				
+				{% else %}
+				<a class="list-group-item" href="{% url 'productosbajos'%}">Productos bajos de Stock</a>
+				<a class="list-group-item" href="{% url 'registrar_transaccion'%}">Transaccion</a>
+				<a class="list-group-item" href="{% url 'reporte_movimientos_inventario'%}"> Reporte de Inventario  </a>						
+				{% endif %}
 				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
+
+
 			</nav>
 		</aside>
 		<main class="col-md-9">
@@ -28,35 +39,29 @@
 		<div class="card">
 		  <div class="card-body">
 			<form class="row" method="POST">
-				<div class="col-md-5">
-					<div class="form-row">
+				<div class="form-group col-md-5">
+					
 						{% csrf_token %}
 						
-					   <div class="col form-group">
+					   <div class="col">
 						<label>Primer Nombre</label>
-						<input name='first_name' id="first_name" type="text" class="form-control" value="{{ user.first_name}}">										 
+						<input name='first_name' id="first_name" type="text" class="form-control" value="{{ user.first_name}}"readonly>										 
 					   </div> 
 					   <input type="hidden" name="id" value="{{user.pk}}">
 	
 					   <div class="col">
 						<label>Primer  Apellido</label>
-						<input  type="text" class="form-control" value="{{ user.primer_apellido}}">
+						<input  type="text" class="form-control" value="{{ user.primer_apellido}}"readonly>
 					   </div>
 					   <div class="col form-group">
 						   <label>Correo</label>
-							 <input type="email" class="form-control" value="{{ user.email}}">
-					   </div>
-					   
-						<div class="col form-group">
-						   <label>Direccion</label>
-							 <input type="text" class="form-control" value="{{ user.direccion}}">
+							 <input type="email" class="form-control" value="{{ user.email}}"readonly>
 					   </div>
 						<div class="form-group col-md-6">
 							<label>Tipo de Documento</label>
-							<select id="inputState" class="form-control">
-							<option>{{user.tipoDoc}}</option>
-							</select>
-					   </div> 
+							<input type="tipoDoc" class="form-control" value="{{ user.tipoDoc}}"readonly>
+
+					   
 				   </div>
 				 <BR></BR>
 	
@@ -66,19 +71,19 @@
 				<div class="form-group col-md-5">
 					<div class="col">
 						<label>Segundo Nombre</label>
-						<input type="text" class="form-control" value="{{ user.last_name}}">
+						<input type="text" class="form-control" value="{{ user.last_name}}" readonly>
 					   </div>
 					<div class="col">
 						<label>Segundo  Apellido</label>
-						<input type="text" class="form-control" value="{{ user.segundo_apellido}}">
+						<input type="text" class="form-control" value="{{ user.segundo_apellido}}"readonly>
 					   </div>
 					 <div class="col form-group">
 						   <label>Telefono</label>
-							 <input type="text" class="form-control" value="{{ user.telefono}}">
+							 <input type="text" class="form-control" value="{{ user.telefono}}"readonly>
 					   </div>
 					<div class="col form-group">
 						   <label>Contraseña</label>
-							 <input type="password" class="form-control" value="{{ user.password}}">
+							 <input type="password" class="form-control" value="{{ user.password}}"readonly>
 					   </div>
 				</div>
 			 </form>

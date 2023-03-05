@@ -6,7 +6,7 @@
 </div>
     <div class="">
         <button type="button" class="btb btn-info d-inline" id="eliminar">-</button>
-        <input type="number" value="1" class="form-control col-sm-1 d-inline" id="cantidad" name="cantidad" readonly>
+        <input type="number" value="1" class="form-control form-control-lg col-sm-2 d-inline" id="cantidad" name="cantidad"  min="1" max="{{producto.cantidad}}" readonly>
         <button type="button" class="btb btn-info" id="agregar">+</button>
     </div>
 
@@ -23,7 +23,9 @@
     const cantidad = document.getElementById('cantidad')
 
     agregar.addEventListener('click', function(){
-        cantidad.value = parseInt(cantidad.value) + 1
+        if (parseInt(cantidad.value) < parseInt(cantidad.getAttribute('max'))) {
+            cantidad.value = parseInt(cantidad.value) + 1
+        }
     })
 
     eliminar.addEventListener('click', function(){
@@ -35,5 +37,4 @@
         cantidad.value = value
     })
 </script>
-
 

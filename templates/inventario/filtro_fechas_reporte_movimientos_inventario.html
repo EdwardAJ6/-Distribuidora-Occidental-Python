@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="container">
+	<h1 class="text-center">Reporte de Movimientos de Inventario</h1>
+	<h2 class="text-center">Filtrar Reporte de Movimientos de Inventario</h2>
+	<br>
+	<form method="GET" action="{% url 'reporte_movimientos_inventario' %}">
+	  <div class="form-group">
+		<label for="fecha_inicio">Fecha de inicio:</label>
+		<input type="date" class="form-control input-sm" name="fecha_inicio" id="fecha_inicio">
+	  </div>
+  
+	  <div class="form-group">
+		<label for="fecha_fin">Fecha de fin:</label>
+		<input type="date" class="form-control input-sm" name="fecha_fin" id="fecha_fin" >
+	  </div>
+  
+	  <button type="submit" class="btn btn-primary">Filtrar</button>
+	 
+	</form>
+	<br>
+  </div>
+
+  <style>
+	.input-sm {
+	  width: 150px;
+	}
+	</style>
+{% endblock %}

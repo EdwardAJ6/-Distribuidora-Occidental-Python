@@ -19,6 +19,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from core.forms import PqrForm
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
 
 def tienda(request):
 
@@ -47,10 +50,14 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        
+        #if request.GET.get('next'):
+         #   return HttpResponseRedirect(request.GET['next']) 
+        
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
-            if user.is_staff:
+            if user.is_staff:             
                 return redirect('admin:index')
             else:
                 return redirect('index')
@@ -89,8 +96,8 @@ class UpdateUserView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
     success_url = reverse_lazy('index')
     success_message = "User updated"
 
-    def get_object(slef):
-        return slef.request.user
+    def get_object(self):
+        return self.request.user
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR,
