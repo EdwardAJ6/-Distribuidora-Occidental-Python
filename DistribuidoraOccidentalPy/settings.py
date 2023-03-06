@@ -50,7 +50,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sing": "Bienvendo a Distribuidora Occidental",
     "copyright": "Distribuidora Occidental copyright",
     "show_sidebar": True,
-    "navigation-expanded": True,
+    "navigation_expanded": False,
     "search-model": "auth.User",
     "search_model": ["auth.User"],
     "hide-apps": [
@@ -60,8 +60,26 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
-        "Carros": "fa-shopping-cart",
-        
+        "carrito": "fas fa-cart-plus",
+        "carrito.Carro": "",
+        "correo": "fas fa-mail-bulk",
+        "correo.Correo": "",
+        "direcciones": "fas fa-directions",
+        "direcciones.DirrecionesEnvios": "",
+        "inventario": "fas fa-dolly",
+        "inventario.Inventario": "",
+        "inventario.Transaccion":"",
+        "orden": "fas fa-sort",
+        "orden.Orden": "",
+        "core": "fas fa-user-secret",
+        "core.Marca":"",
+        "core.CategoriaProducto":"",
+        "core.Proveedor":"",
+        "core.Producto":"",
+        "core.Pqr":"",
+        "usuario": "fas fa-user-tie",
+        "usuario.User":"",
+
     },
     "related-modal-active": False,
     "show_ui_builder": False,
@@ -169,7 +187,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Bogota'
 
