@@ -50,7 +50,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sing": "Bienvendo a Distribuidora Occidental",
     "copyright": "Distribuidora Occidental copyright",
     "show_sidebar": True,
-    "navigation-expanded": False,
+    "navigation-expanded": True,
     "search-model": "auth.User",
     "search_model": ["auth.User"],
     "hide-apps": [
@@ -60,11 +60,7 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
-        "accounts": "fas fa-user-circle",
-        "accounts.Account": "user-circle",
-        "Marca": "fas fa-user-circle",
-
-        
+        "Carros": "fa-shopping-cart",
         
     },
     "related-modal-active": False,
@@ -76,6 +72,7 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
         {"name": "Inicio",  "url": "index", "permissions": ["auth.view_user"]},
     ]
+    
     
     
 }

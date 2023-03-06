@@ -40,7 +40,7 @@ class ProductoAdmin(admin.ModelAdmin):
 
             return response
     def reporte_stock_pdf(modeladmin, request, queryset):
-        stock = queryset.values_list('NombreProducto', 'StockDisponible')
+        stock = queryset.values_list('NombreProducto', 'cantidad')
 
         # Crear una figura de Matplotlib con el gráfico de barras del stock
         fig, ax = plt.subplots()
@@ -59,8 +59,6 @@ class ProductoAdmin(admin.ModelAdmin):
         response['Content-Disposition'] = 'attachment; filename=reporte_stock.pdf'
         return response
     reporte_stock_pdf.short_description = 'Generar reporte de stock en PDF'
-
-
     generate_pdf.short_description = 'Reporte de las categorias productos'
     actions = [reporte_stock_pdf, generate_pdf]
 admin.site.register(Producto,ProductoAdmin)
