@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+{% url 'direcciones:direcciones' as direcciones %}
+
 <section class="section-pagetop bg-gray">
 	<div class="container">
 		<h2 class="title-page">Mis PQRS </h2>
@@ -14,14 +16,8 @@
 	
 	<div class="row">
 		<aside class="col-md-3">
-			<nav class="list-group">
-				<a class="list-group-item" href="#"> Account overview  </a>
-				<a class="list-group-item" href="#"> Direcciones  </a>
-				<a class="list-group-item" href="#"> Mis compras </a>
-				<a class="list-group-item active" href="{% url 'pqrs'%}">Mis PQRS</a>
-				<a class="list-group-item" href="#"> Configuracion </a>
-				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
-			</nav>
+			{% include 'incluidos/dash.html' %}
+
 		</aside>
 		<main class="col-md-9">
 	
@@ -47,6 +43,20 @@
 				{% csrf_token %}
 				<div class="modal-body">
 				  <h5 class="text-center">Cuéntanos, ¿qué sucede?</h5>
+
+				  <div class="form-row">
+					<div class="col form-group">
+					  <label for="">Tipo de PQR</label>
+					  <select name="tipo" class="form-control" required>
+						<option value="">Seleccione un tipo</option>
+						<option value="Peticion">Petición</option>
+						<option value="Queja">Queja</option>
+						<option value="Reclamo">Reclamo</option>
+						<option value="Sugerencia">Sugerencia</option>
+					  </select>
+					</div>
+				  </div>
+
 				  <div class="form-row">
 					<div class="col form-group">
 					  <label for="">Título o Asunto de la PQR</label>
@@ -87,7 +97,10 @@
 					<th scope="col">Número de PQR</th>
 					<th scope="col">Título</th>
 					<th scope="col">Descripción</th>
+					<th scope="col">Tipo</th>
 					<th scope="col">Fecha de Creación</th>
+					<th scope="col">Respuesta PQR</th>
+					<th scope="col">Fecha de Respuesta</th>
 				  </tr>
 				</thead>
 				<tbody>
@@ -96,7 +109,15 @@
 					<th scope="row">{{pqr.id}}</th>
 					<td>{{pqr.titulo}}</td>
 					<td>{{pqr.descripcion}}</td>
+					<td>{{pqr.tipo}}</td>
 					<td>{{pqr.creada_en}}</td>
+					{% if pqr.respuesta %}
+					<td>{{pqr.respuesta}}</td>
+					<td>{{pqr.fecha_respuesta}}</td>
+					{% else %}
+					<td>Su PQR no ha sido respondida.</td>
+					<td>La respuesta a su PQR tiene un plazo máximo de 3 días. Es decir, su PQR será respondida el día {{estimated_response_date|date:"d-m-Y"}}</td>
+					{% endif %}
 				  </tr>
 				  {% endfor %}
 				</tbody>

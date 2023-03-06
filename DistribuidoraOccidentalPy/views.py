@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import UserRegistroForm
-from core.models import Producto
+from core.models import Producto,Pqr
 from usuario.models import User
 from .forms import UserRegistroForm,UsuarioActualizar,EditUserProfileForm
 from django.contrib.auth.models import User
@@ -18,8 +18,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from core.forms import PqrForm
-from core.models import Pqr
-
+from django.contrib import messages
+from datetime import datetime, timedelta
 
 def tienda(request):
 
@@ -110,7 +110,9 @@ def ordenar(request):
 @login_required(login_url='login')
 def ver_pqrs(request):
     pqrs = Pqr.objects.filter(usuario=request.user).order_by('id')
-    context = {
+    estimated_response_date = datetime.now() + timedelta(days=3)
+    context = { 
+        'estimated_response_date': estimated_response_date,
         'pqrs': pqrs,
     }
     return render(request,'cuenta/pqrs.html',context)

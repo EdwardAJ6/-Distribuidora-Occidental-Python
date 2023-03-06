@@ -16,23 +16,7 @@
 	
 	<div class="row">
 		<aside class="col-md-3">
-			<nav class="list-group">
-				{% if not user.is_staff %}
-				<a class="list-group-item" href="#"> Account overview  </a>
-				<a class="list-group-item" href="{{ direcciones }}"> Direcciones  </a>
-				<a class="list-group-item" href="{% url 'pqrs'%}">Mis PQRS</a>
-				<a class="list-group-item" href="{% url 'orden:completadas' %}"> Mis compras </a>
-				<a class="list-group-item active" href="#"> Configuracion </a>
-				
-				{% else %}
-				<a class="list-group-item" href="{% url 'productosbajos'%}">Productos bajos de Stock</a>
-				<a class="list-group-item" href="{% url 'registrar_transaccion'%}">Transaccion</a>
-				<a class="list-group-item" href="{% url 'reporte_movimientos_inventario'%}"> Reporte de Inventario  </a>						
-				{% endif %}
-				<a class="list-group-item" href="{% url 'logout'%}">Cerrar sesion</a>
-
-
-			</nav>
+			{% include 'incluidos/dash.html' %}
 		</aside>
 		<main class="col-md-9">
 	
