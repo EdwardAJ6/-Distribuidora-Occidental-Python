@@ -106,6 +106,14 @@ def complete(request):
         return redirect('carrito:carrito')
     
     orden.complete()
+    # Restar la cantidad de productos en el carrito
+    for producto_carrito in carrito.productoscarro_set.all():
+        producto = producto_carrito.producto
+        cantidad_carrito = producto_carrito.cantidad
+        cantidad = producto.cantidad
+        
+        producto.cantidad = cantidad - cantidad_carrito
+        producto.save()
     
     thread = threading.Thread(target=Mail.enviar_orden_completada, args=(
         orden, request.user
