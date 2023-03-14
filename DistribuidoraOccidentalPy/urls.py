@@ -30,6 +30,8 @@ urlpatterns = [
     path('orden/', include('orden.urls')),
     path('inventario/', include('inventario.urls')),
     path('correo/', include('correo.urls')),
+    path('buscar/', views.buscar_productos, name='buscar'),
+
 
 
 
