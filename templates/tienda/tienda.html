@@ -24,8 +24,15 @@
       <!--CARDS-->
       <div class="container" id="lista-productos">
         <h4>{{ message }}</h4>
-		{% include 'productos/buscar.html'%}
-		
+
+        <form method="GET" action="{% url 'buscar' %}">
+          <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Buscar producto por nombre">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+          </div>
+        </form>
 
         <div class="row">
           {% for producto in producto_list %}
@@ -37,8 +44,8 @@
           {% endfor %}
         </div>
 
-      </div>
-</section>
+  </div>
+
 </body>
 
 {% endblock %}
