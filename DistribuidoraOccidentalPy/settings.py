@@ -206,7 +206,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+#ESTO HACE QUE EN PRODUCCION NO FUNIONE EL STATIC, Y PARA LOCAL TOCA PONERLO
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -216,8 +219,8 @@ MEDIA_URL ='media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Agregar ruta de STATIC_ROOT
-STATIC_ROOT = BASE_DIR / 'static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATIC_ROOT = BASE_DIR / 'static/'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #variables
 LOGOUT_REDIRECT_URL ="login"
