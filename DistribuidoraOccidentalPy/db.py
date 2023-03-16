@@ -25,8 +25,22 @@ MYSQL = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bd_distribuidora_python',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306'
+    }
+}
+
+MYSQLAZURE = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bd_distribuidora_python',
+        'USER': 'admindisoc',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '3306',
+'OPTIONS': {
+    'ssl': {'verify_ssl': False},
+},
     }
 }
