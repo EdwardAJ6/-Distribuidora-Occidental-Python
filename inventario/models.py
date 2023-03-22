@@ -55,3 +55,8 @@ class Compra(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     transaccion = models.ForeignKey(Transaccion, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def save(self, *args, **kwargs):
+        self.total = self.producto.precio * self.cantidad
+        super(Compra, self).save(*args, **kwargs)
