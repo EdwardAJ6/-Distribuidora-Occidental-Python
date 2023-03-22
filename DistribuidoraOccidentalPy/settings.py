@@ -15,8 +15,8 @@ SECRET_KEY = 'django-insecure-^3bidr4)ckdv*vlpvv$nw=!ee!w7of-3p2rmez-ut1yf7$&zjg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['disoccidentalpy.azurewebsites.net']
-CSRF_TRUSTED_ORIGINS = ['https://*.disoccidentalpy.azurewebsites.net']
+#ALLOWED_HOSTS = ['disoccidentalpy.azurewebsites.net']
+#CSRF_TRUSTED_ORIGINS = ['https://*.disoccidentalpy.azurewebsites.net']
 
 
 # Application definition
@@ -164,7 +164,7 @@ WSGI_APPLICATION = 'DistribuidoraOccidentalPy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = db.SQLITE
+DATABASES = db.MYSQL
 
 
 # Password validation
@@ -206,10 +206,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 #ESTO HACE QUE EN PRODUCCION NO FUNIONE EL STATIC, Y PARA LOCAL TOCA PONERLO
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -228,7 +229,7 @@ LOGOUT_REDIRECT_URL ="login"
 ##Variables para el Correo
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'ivanciclista2@gmail.com'
+EMAIL_HOST_PASSWORD = 'mmqgqkhsakixoxfx'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465

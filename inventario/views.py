@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Producto
-from .models import  Transaccion
+from .models import  Transaccion,Compra
 from core.models import Proveedor
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from datetime import date
+
 
 
 def registrar_transaccion(request, proveedor_id=None):
@@ -45,6 +47,12 @@ def registrar_transaccion(request, proveedor_id=None):
             producto.cantidad -= cantidad
         transaccion = Transaccion(tipo=tipo, producto=producto, cantidad=cantidad, usuario=request.user)
         transaccion.save()
+        
+        if tipo == 'entrada':
+
+            compra = Compra(producto=producto, cantidad=cantidad, fecha=date.today(), transaccion=transaccion,usuario=request.user)
+            compra.save()
+        
         producto.save()
 
         messages.success(request, "Transacción registrada exitosamente.")

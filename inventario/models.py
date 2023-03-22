@@ -48,3 +48,10 @@ def actualizar_ubicacion(sender, instance, created, **kwargs):
     if created:
         instance.ubicacion = "Bodega"
         instance.save()
+
+class Compra(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    transaccion = models.ForeignKey(Transaccion, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)

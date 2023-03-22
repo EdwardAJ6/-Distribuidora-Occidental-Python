@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Transaccion,Inventario
+from .models import Transaccion,Inventario,Compra
 
 
 @admin.register(Transaccion)
@@ -19,3 +19,9 @@ class TransaccionAdmin(admin.ModelAdmin):
 @admin.register(Inventario)
 class InventarioAdmin(admin.ModelAdmin):
      list_display = ['ubicacion','producto']
+
+@admin.register(Compra)
+class CompraAdmin(admin.ModelAdmin):
+    list_display = ['producto','fecha']
+    list_filter = ['fecha']
+
