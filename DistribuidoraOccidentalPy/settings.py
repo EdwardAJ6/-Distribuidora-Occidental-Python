@@ -70,6 +70,7 @@ JAZZMIN_SETTINGS = {
         "inventario": "fas fa-dolly",
         "inventario.Inventario": "",
         "inventario.Transaccion":"",
+        "inventario.Compra":"",
         "orden": "fas fa-sort",
         "orden.Orden": "",
         "core": "fas fa-user-secret",
@@ -80,6 +81,7 @@ JAZZMIN_SETTINGS = {
         "core.Pqr":"",
         "usuario": "fas fa-user-tie",
         "usuario.User":"",
+
 
     },
     "related-modal-active": False,
@@ -229,7 +231,7 @@ LOGOUT_REDIRECT_URL ="login"
 ##Variables para el Correo
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ivanciclista2@gmail.com'
-EMAIL_HOST_PASSWORD = 'mmqgqkhsakixoxfx'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
