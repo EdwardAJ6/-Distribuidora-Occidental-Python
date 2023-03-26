@@ -27,6 +27,10 @@ $(document).ready(function() {
         <a href="{% url 'producto' producto.slug %}" class="title">{{ producto.NombreProducto }}</a>
       </div>
       <div class="price h5 mt-2">$USD {{ producto.precio }}</div> <!-- price.// -->
+      <div>
+        <a href="{% url 'producto' producto.slug %}" class="btn btn-primary">Ver más</a>
+      </div>
     </figcaption>
+
   </div>
 </div> <!-- col.// -->
