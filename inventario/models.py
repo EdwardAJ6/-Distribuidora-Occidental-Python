@@ -46,7 +46,7 @@ def actualizar_cantidad_inventario(sender, instance, **kwargs):
 @receiver(post_save, sender=Inventario)
 def actualizar_ubicacion(sender, instance, created, **kwargs):
     if created:
-        instance.ubicacion = "Bodega"
+        instance.ubicacion = "Mostrador/Local"
         instance.save()
 
 class Compra(models.Model):
