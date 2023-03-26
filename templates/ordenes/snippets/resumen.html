@@ -1,40 +1,23 @@
 
 
-<br>
-<div class="card w-50">
-    <div card="card-body">
-        <div class="font-weight-bold">
-            Resumen del pedido
-        </div>
-        <div class="">
-            <table class="table table-borderless table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Productos:</td>
-                        <td>{{ carrito.total }}</td>
-                    </tr>
-                    <tr>
-                        <td>Envio:</td>
-                        <td>{{ orden.precio_envio}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="">
+<div class="card">
+    <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Productos :</dt>
+              <dd class="text-right">$USD: {{ carrito.subtotal }}</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Envio:</dt>
+              <dd class="text-right">$USD: {{ orden.precio_envio}}</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Total (Impuestos incluidos):</dt>
+              <dd class="text-right  h5"><strong>$: {{ orden.total }}</strong></dd>
+            </dl>
             <hr>
-            <div class="font-weight-bold text-danger">
-                Total (Impuestos incluidos)
-                <div class="d-inline-block">
-                        {{ orden.total }}
-                </div>
-            </div>
-        </div>
+            
+    </div> <!-- card-body.// -->
+</div>  <!-- card .// -->
         <div class="mt-2">
             <a href="{{ next_url }}" class="btn btn-warning">Confirmar pedido</a>
         </div>

@@ -4,24 +4,48 @@
 
 {% block content%}
 
-    <div class="a">
-        <div class="b">
-                {% if producto.Foto %}
+<section class="section-content bg-white padding-y">
+    <div class="container">
+    
+    <!-- ============================ ITEM DETAIL ======================== -->
+        <div class="row">
+            <aside class="col-md-6">
+    <div class="card">
+    <article class="gallery-wrap"> 
+        <div class="img-big-wrap">
+          <div> <a href="#">
+            {% if producto.Foto %}
                 <img src="{{ producto.Foto.url }}" class="imgc" alt="Imagen del producto" width="200" height="200">
                 {% endif %}
-        </div>
-        <div class="c">
-            <hr>
-            <h1>{{ producto.NombreProducto }}</h1>
-            <div class="h5 font-weight-bold">
-                 Precio: <span class="text-danger">{{ producto.precio }}</span>
-            </div>
-            <div class="d">
-            <p>{{ producto.Descripcion }}</p>
-            {% include 'carrito/agregar.html' %}
-            </div>
-        </div>
-        </div>
-    </div>
+          </a></div>
+        </div> <!-- slider-product.// -->
+    </article> <!-- gallery-wrap .end// -->
+    </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-6">
+    <article class="product-info-aside">
+    
+    <h2 class="title mt-3">{{ producto.NombreProducto }}</h2>
+    
+  
+    <div class="mb-3"> 
+        <span class="price h4"> Precio:USD {{ producto.precio }}</span>
+
+    </div> <!-- price-detail-wrap .// -->
+    
+    <p>{{ producto.Descripcion }}</p>
+
+ 
+    {% include 'carrito/agregar.html' %}
+
+    </article> <!-- product-info-aside .// -->
+            </main> <!-- col.// -->
+        </div> <!-- row.// -->
+    
+    <!-- ================ ITEM DETAIL END .// ================= -->
+    
+    
+    </div> <!-- container .//  -->
+    </section>
 
 {% endblock %}

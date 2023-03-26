@@ -3,79 +3,73 @@
 {% load producto_extras %}
 
 {% block content %}
-<body>
-<section class="section-content padding-y bg">
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
     <div class="container">
+
         <div class="row">
-            <aside class="col-lg-9">
-            <div class="card">
-                {% if carrito.productos.exists %}
-                <div> 
-                    <table> 
-                        <thead> 
-                            <tr> 
-                                <th scope="col"> </th>
-                                <th scope="col"> Imagén</th>
-                                <th scope="col"> producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Precio</th>
-                            </tr>
+            <main class="col-md-9">
+                <div class="card">
+
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                          <th scope="col">Product</th>
+                          <th scope="col" width="120">Quantity</th>
+                          <th scope="col" width="120">Price</th>
+                          <th scope="col" class="text-right" width="200"> </th>
+                        </tr>
                         </thead>
-                        <tbody> 
-
+                        <tbody>
                             {% for cp in carrito.products_related.all %}
-                                {% with producto=cp.producto %}
-                                    <tr>
-                                        <th>{{ forloop.counter }}</th>
-                                        <th>
-                                            {% if producto.Foto %}
-                                                <img src="{{ producto.Foto.url }}" alt="Imagen del producto" width="60" height="60">
-                                            {% endif %}
-                                        </th>
-                                        
-                                        <th>
-                                            <a href="{% url 'producto' producto.slug %}">{{ producto.NombreProducto }}</a>
-                                            {% include 'carrito/eliminar.html' %}
-                                        </th>
-                                        <th>{{ cp.cantidad }}</th>
-                                        <th>
-                                            <span class="">{{ producto.precio }}</span>
-                                            
-                                        </th>
-                                    </tr>
-                                {% endwith %}
-                            {% endfor %}
+                            {% with producto=cp.producto %}
+                        <tr>
+                            <td {{ forloop.counter }}>
+                                <figure class="itemside">
+                                    <div class="aside">
+                                        {% if producto.Foto %}<img src="{{ producto.Foto.url }}" class="img-sm"></div>
+                                        {% endif %}           
+                                    </div>
+                                    <figcaption class="info">
+                                        <a href="{% url 'producto' producto.slug %}" class="title text-dark">{{producto.NombreProducto }}</a>
+                                        <p class="text-muted small">Marca: {{producto.Marca}}</p>
+                                    </figcaption>
+                                </figure>
+                            </td>
+                            <td> 
+                                {{ cp.cantidad }}
+                            </td>
+                            <td> 
+                                <div class="price-wrap">
+                                    <var class="price">${{ producto.precio }}</var>
+                                </div>           
+                            </td>
+                            
+                            <td class="text-right"> 
+                                {% include 'carrito/eliminar.html' %}
+
+                            </td>
+                        </tr>
+                        {% endwith %}
+                        {% endfor %}
                         </tbody>
-                    </table>
-                </div>
-
-                <div class="col"> 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="font-weight-bold">
-                                Subtotal({{ carrito.productos.count }}): <span class="text-danger">{{ carrito.subtotal }}</span>
-                            </div>
-                            <div class="mt-2">
-                                <a href="{% url 'orden:orden' %}" class="btn btn-primary btn-block"> Proceder al pago</a>
-                                <div class="mt-2">
-                                    <a href="{% url 'tienda' %}" class="btn btn-light btn-block"> Continuar comprando</a>
-                                </div>
-                            </div>
-                        </div>
+                        </table>
+                        
+                    <div class="card-body border-top">
+                        <a href="{% url 'orden:orden' %}" class="btn btn-primary btn-block"> Proceder al pago<i
+                                class="fa fa-chevron-right"></i> </a>
+                        <a href="{% url 'tienda' %}" class="btn btn-light btn-block"> <i class="fa fa-chevron-left"></i>
+                            Continuar comprando</a>
                     </div>
-                </div>
+                </div> <!-- card.// -->
 
-                {% else %}
-                    <div>
-                        <p class="h3">Tu carrito de compras esta vacio.</p>
-                        <a href="{% url 'tienda' %}">Seguir comprando</a>
-                    </div>
-                {% endif %}
-            </div> <!-- card.// -->
-        </div> <!-- row.// -->
+
+            </main> <!-- col.// -->
+
+        </div>
+
     </div> <!-- container .//  -->
 </section>
-</body>
-</html>
+<!-- ========================= SECTION CONTENT END// ========================= -->
 
 {% endblock%}

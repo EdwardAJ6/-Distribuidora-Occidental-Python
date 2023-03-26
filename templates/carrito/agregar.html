@@ -1,31 +1,45 @@
 {% load static %}
-<div class="col-3">
+<div class="form-row  mt-4">
 <form action="{% url 'carrito:agregar' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="producto_id" value="{{ producto.id }}">
 </div>
-    <div class="">
+<div class="form-row  mt-4">
+    <div class="form-group col-md flex-grow-0">
+        <div class="input-group mb-3 input-spinner">
+          <div class="input-group-prepend">
+            <button class="btn btn-light" type="button" id="agregar"> + </button>
+          </div>
+          {% if producto.cantidad == 0 %}
+          <input type="text" class="form-control" value="0" id="cantidad" name="cantidad"  min="0" max="0" readonly>
+          {% else %}
+          <input type="text" class="form-control" value="1" id="cantidad" name="cantidad"  min="1" max="{{producto.cantidad}}" readonly>
+          {% endif %}
+
+          <div class="input-group-append">
+            {% if producto.cantidad == 0 %}
+            <button class="btn btn-light" type="button" id="eliminar" disabled> - </button>
+            {% else %}
+            <button class="btn btn-light" type="button" id="eliminar" > - </button>
+            {% endif %}
+
+          </div>
+        </div>
+    </div> <!-- col.// -->
+    <div class="form-group col-md">
         {% if producto.cantidad == 0 %}
-        <button type="button" class="btb btn-info d-inline" id="eliminar" disabled>-</button>
-        <input type="number" value="0" class="form-control form-control-lg col-sm-2 d-inline" id="cantidad" name="cantidad"  min="0" max="0" readonly>
+        <H4>PRODUCTO FUERA DE STOCK</H4>
+        
+        <a href="#" class="btn btn-light">
+            <i class="fas fa-envelope"></i> <span class="text">Contact supplier</span> 
+                </a>
         {% else %}
-        <button type="button" class="btb btn-info d-inline" id="eliminar" >-</button>
-        <input type="number" value="1" class="form-control form-control-lg col-sm-2 d-inline" id="cantidad" name="cantidad"  min="1" max="{{producto.cantidad}}" readonly>
+        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
         {% endif %}
+    </div> <!-- col.// -->
+    </form>
+</div> <!-- row.// -->
 
-        <button type="button" class="btb btn-info" id="agregar">+</button>
-    </div>
-
-    <div class="mt-2">
-        {% if producto.cantidad == 0 %}
-        <H3>PRODUCTO FUERA DE STOCK</H3>
-    {% else %}
-    <button type="submit" class="btn btn-warning">Agregar al carrito</button>
-    {% endif %}
-
-    <div>
-</form>
-</div>
 
 
 <script>
