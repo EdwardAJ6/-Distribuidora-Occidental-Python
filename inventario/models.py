@@ -46,5 +46,17 @@ def actualizar_cantidad_inventario(sender, instance, **kwargs):
 @receiver(post_save, sender=Inventario)
 def actualizar_ubicacion(sender, instance, created, **kwargs):
     if created:
-        instance.ubicacion = "Bodega"
+        instance.ubicacion = "Mostrador/Local"
         instance.save()
+
+class Compra(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    transaccion = models.ForeignKey(Transaccion, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def save(self, *args, **kwargs):
+        self.total = self.producto.precio * self.cantidad
+        super(Compra, self).save(*args, **kwargs)

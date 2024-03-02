@@ -9,7 +9,7 @@ class Mail:
     @staticmethod
     def obtener_url_compras(url):
         if settings.DEBUG:
-            return 'http://127.0.0.1:8000{}'.format(
+            return 'https://disoccidentalpy.azurewebsites.net{}'.format(
                 reverse(url)
             )
     

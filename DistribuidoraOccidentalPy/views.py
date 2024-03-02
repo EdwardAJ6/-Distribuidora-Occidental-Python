@@ -20,6 +20,10 @@ from django.http import HttpResponse
 from core.forms import PqrForm
 from django.contrib import messages
 from datetime import datetime, timedelta
+from django.db.models import Q
+from inventario.models import Producto
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def tienda(request):
 
@@ -135,3 +139,26 @@ def añadir_pqrs(request):
                 print(form.errors)
         # crear una respuesta si la solicitud no es del tipo POST o el formulario no es válido
         return HttpResponse("La solicitud no es válida")
+
+
+def buscar_productos(request):
+    query = request.GET.get('q')
+    if query:
+        producto_list = Producto.objects.filter(Q(NombreProducto__icontains=query))
+        message = f"Resultados de búsqueda para '{query}':"
+    else:
+        producto_list = Producto.objects.all()
+        message = "No se han encontrado resultados para la búsqueda."
+
+    # Crear una instancia de Paginator y obtener la página actual
+    paginator = Paginator(producto_list, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'producto_list': page_obj,
+        'message': message,
+        'page_obj': page_obj,
+        'total_pages': paginator.num_pages,
+    }
+    return render(request, 'tienda/tienda.html', context)

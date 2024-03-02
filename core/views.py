@@ -22,19 +22,5 @@ class VistaDetalleProducto(DetailView):
     model = Producto
     template_name = 'tienda/producto.html'
     
-    
-class VistaListaBuscarProductos(ListView):
-    template_name = 'productos/buscar.html'
-    
-    def get_queryset(self):
-        return Producto.objects.filter(NombreProducto__icontains=self.query())
-    
-    def query(self):
-        return self.request.GET.get('q')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context ['query'] = self.query()
-          
-        return context
+
     

@@ -15,8 +15,8 @@ SECRET_KEY = 'django-insecure-^3bidr4)ckdv*vlpvv$nw=!ee!w7of-3p2rmez-ut1yf7$&zjg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['disoccidentalpy.azurewebsites.net/']
-CSRF_TRUSTED_ORIGINS = ['https://*.disoccidentalpy.azurewebsites.net']
+#ALLOWED_HOSTS = ['disoccidentalpy.azurewebsites.net']
+#CSRF_TRUSTED_ORIGINS = ['https://*.disoccidentalpy.azurewebsites.net']
 
 
 # Application definition
@@ -70,6 +70,7 @@ JAZZMIN_SETTINGS = {
         "inventario": "fas fa-dolly",
         "inventario.Inventario": "",
         "inventario.Transaccion":"",
+        "inventario.Compra":"",
         "orden": "fas fa-sort",
         "orden.Orden": "",
         "core": "fas fa-user-secret",
@@ -80,6 +81,7 @@ JAZZMIN_SETTINGS = {
         "core.Pqr":"",
         "usuario": "fas fa-user-tie",
         "usuario.User":"",
+
 
     },
     "related-modal-active": False,
@@ -193,6 +195,10 @@ LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Bogota'
 
+USE_L10N = False
+
+# Configuración regional para números decimales
+DECIMAL_SEPARATOR = '.'
 USE_I18N = True
 
 USE_TZ = True
@@ -203,6 +209,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#ESTO HACE QUE EN PRODUCCION NO FUNIONE EL STATIC, Y PARA LOCAL TOCA PONERLO
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -212,8 +222,8 @@ MEDIA_URL ='media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Agregar ruta de STATIC_ROOT
-STATIC_ROOT = BASE_DIR / 'static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATIC_ROOT = BASE_DIR / 'static/'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #variables
 LOGOUT_REDIRECT_URL ="login"

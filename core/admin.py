@@ -12,8 +12,7 @@ import matplotlib.pyplot as plt
 from reportlab.pdfgen import canvas
 from django.db.models import Count
 from reportlab.lib.utils import ImageReader
-
-
+from django.utils.html import format_html
 from .models import *
 
 class ProductoAdmin(admin.ModelAdmin):
@@ -123,7 +122,7 @@ class MarcaAdmin(admin.ModelAdmin):
 admin.site.register(Marca,MarcaAdmin)
 
 
-# @admin.register(CategoriaProducto)
+@admin.register(CategoriaProducto)
 class CategoriaProductoAdmin(admin.ModelAdmin):
     list_display = ['nombreCategoria']
     def generate_pdf(self, request, queryset):
@@ -152,11 +151,10 @@ class CategoriaProductoAdmin(admin.ModelAdmin):
             return response
     generate_pdf.short_description = 'Reporte de las categorias productos'
     actions={generate_pdf}
-admin.site.register(CategoriaProducto,CategoriaProductoAdmin)
 
 
 
-# @admin.register(Proveedor)
+@admin.register(Proveedor)
 class ProveedorAdmin(admin.ModelAdmin):
     list_display = ['nombre']
     def generate_pdf(self, request, queryset):
@@ -185,12 +183,34 @@ class ProveedorAdmin(admin.ModelAdmin):
             return response
     generate_pdf.short_description = 'Reporte de los proveedores'
     actions={generate_pdf}
-admin.site.register(Proveedor,ProveedorAdmin)
 
+@admin.register(Pqr)
 class PqrAdmin(admin.ModelAdmin):
-    list_display = ['usuario', 'titulo', 'descripcion', 'tipo', 'creada_en', 'respuesta', 'fecha_respuesta']
-    readonly_fields = ('usuario', 'titulo', 'tipo', 'descripcion','creada_en')
-    list_filter = ['creada_en', 'tipo', 'fecha_respuesta', 'respuesta']
+    list_display = ['usuario', 'titulo', 'descripcion', 'tipo', 'creada_en','prioridad', 'respuesta', 'fecha_respuesta']
+    readonly_fields = ('usuario', 'titulo', 'tipo', 'descripcion','creada_en','prioridad')
+    list_filter = ['creada_en', 'tipo', 'fecha_respuesta', 'respuesta','prioridad',]
+        # Define los colores para cada prioridad
+    priority_colors = {
+        'Baja': 'green',
+        'Media': 'orange',
+        'Alta': 'red',
+        'Respondida': 'blue'
+    }
+
+     # Cambia el color de la prioridad en la lista de visualización
+    # Cambia el color de la prioridad en la lista de visualización
+    def color_priority(self, obj):
+        return format_html('<span style="color: {};">{}</span>', self.priority_colors[obj.prioridad], obj.prioridad)
+    color_priority.short_description = 'Prioridad'
+
+    # Establece la prioridad como un enlace para que pueda ser seleccionada
+    list_display_links = ('color_priority', )
+
+    # Agrega la función de color_priority a la lista de visualización
+    list_display = list(list_display)
+    list_display[list_display.index('prioridad')] = 'color_priority'
+
+
     def has_add_permission(self, request):
         return False
     def generate_pdf(self, request, queryset):
@@ -247,18 +267,9 @@ class PqrAdmin(admin.ModelAdmin):
         
         # Devolver la respuesta con el PDF generado
         return response
-
     reporte_pqrs.short_description = "Generar reporte de PQRS"
-    
-  
-    
-
-    
     generate_pdf.short_description = 'Reporte de PQRS'
     actions={generate_pdf,reporte_pqrs}
-        
-admin.site.register(Pqr,PqrAdmin)
-
 
 
 

@@ -2,23 +2,35 @@
 
 
 {% block content %}
-
-<div>   
-  <div class="col"> 
-      <h2>Revisa tu pedido</h2>
-  </div>
-
-   <div class="card w-50">
-      <div class="card-body">
-          {% for producto in carrito.productos.all %}
-              {% include 'ordenes/snippets/productosorden.html' %}
-          {% endfor %}
-      </div>
-  </div>
-
-  <div class="col"> 
-        {% url 'orden:direccion' as next_url %}
-      {% include 'ordenes/snippets/resumen.html' with next_url=next_url %}
-  </div>
+<!-- ========================= SECTION CONTENT ========================= -->
+<div class="col"> 
+    <h2>Revisa tu pedido</h2>
 </div>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+    
+    <div class="row">
+        <main class="col-md-9">
+    <div class="card">
+    
+    {% for producto in carrito.productos.all %}
+      {% include 'ordenes/snippets/productosorden.html' %}
+    {% endfor %}
+	
+    </div> <!-- card.// -->
+
+    
+        </main> <!-- col.// -->
+        <aside class="col-md-3">
+            {% url 'orden:direccion' as next_url %}
+            {% include 'ordenes/snippets/resumen.html' with next_url=next_url %}
+        </aside> <!-- col.// -->
+    </div>
+    
+    </div> <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+      
+
 {% endblock %}

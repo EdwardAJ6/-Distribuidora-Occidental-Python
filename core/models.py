@@ -6,6 +6,8 @@ from django.db.models.signals import pre_save
 import uuid
 from usuario.models import User
 from django.contrib.auth.models import Group
+from datetime import datetime, timedelta
+
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=100)
@@ -85,6 +87,19 @@ def assign_group(sender, instance, created, **kwargs):
 
 
 class Pqr(models.Model):
+    BAJA = 'Baja'
+    MEDIA = 'Media'
+    ALTA = 'Alta'
+    RESPONDIDA = 'Respondida'
+
+    ELECCIONES_PRIORIDAD = [
+        (BAJA, 'Baja'),
+        (MEDIA, 'Media'),
+        (ALTA, 'Alta'),
+        (RESPONDIDA, 'Respondida'),
+
+    ]
+
     usuario = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Creada por')
     titulo = models.CharField(max_length=30,verbose_name='Título')
     ELECCIONES = [   ('Peticion', 'Peticion'),   ('Queja', 'Queja'),   ('Reclamo', 'Reclamo'),   ('Sugerencia', 'Sugerencia')]
@@ -93,12 +108,4 @@ class Pqr(models.Model):
     creada_en = models.DateField(auto_now_add=True, verbose_name='Fecha de creación')
     respuesta = models.TextField(max_length=500,verbose_name= 'Respuesta',null=True)
     fecha_respuesta = models.DateField(verbose_name='Respondida en',null=True)
-
-
-
-
-
-
-
-
-
+    prioridad = models.CharField(max_length=10, choices=ELECCIONES_PRIORIDAD, default=BAJA)
