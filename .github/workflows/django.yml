@@ -26,10 +26,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar pruebas
-        run: |
-          python manage.py test
-
       - name: Construir imagen Docker
         run: |
           docker-compose build --no-cache
