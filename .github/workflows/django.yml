@@ -26,11 +26,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install python3-distutils
 
-      - name: Instalar dependencias
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: Construir imagen Docker
         run: |
           docker-compose build --no-cache
